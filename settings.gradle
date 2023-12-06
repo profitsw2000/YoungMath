@@ -15,3 +15,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "YoungMath"
 include ':app'
+include ':core'
+include ':data'
+include ':mainFragment'
+include ':multiplication'
