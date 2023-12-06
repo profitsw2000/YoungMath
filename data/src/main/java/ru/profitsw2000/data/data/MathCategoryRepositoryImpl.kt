@@ -4,7 +4,7 @@ import android.content.Context
 import ru.profitsw2000.data.domain.MathCategoryRepository
 import ru.profitsw2000.data.model.MathCategoryModel
 
-class MathCategoryRepositoryLocal(
+class MathCategoryRepositoryImpl(
     private val context: Context
 ): MathCategoryRepository {
 
