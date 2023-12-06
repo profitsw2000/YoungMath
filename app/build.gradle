@@ -27,4 +27,5 @@ dependencies {
 
     implementation project(path: Modules.core)
     implementation project(path: Modules.data)
+    implementation project(path: Modules.mainFragment)
 }
