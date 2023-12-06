@@ -6,15 +6,15 @@
     android:id="@+id/math_category_item_root_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="@dimen/fragment_extra_large_border_margin"
-    app:strokeColor="@color/black"
+    app:strokeColor="@color/deep_blue"
     app:strokeWidth="@dimen/math_category_item_card_stroke_width"
     app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_constraint_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/fragment_small_border_margin">
 
         <TextView
             android:id="@+id/math_category_item_title_text_view"
