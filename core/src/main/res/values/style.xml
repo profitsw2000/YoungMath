@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Text styles. -->
+    <style name="screen_title_text_style">
+        <item name="android:textSize">@dimen/test_screen_title_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="screen_details_text_style">
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <!-- Shape styles. -->
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
+
 </resources>

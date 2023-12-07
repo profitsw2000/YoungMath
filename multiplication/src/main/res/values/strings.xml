@@ -1,0 +1,7 @@
+<resources>
+    <string name="multiplication_screen_title">Проверка таблицы умножения</string>
+    <string name="multiplication_screen_before_test_details_text">Чтобы начать тестирование на знание таблицы умножения нажмите кнопку СТАРТ. Пауза при тестировании не допускается, возможна только полная остановка проверки нажатием на кнопку СТОП.</string>
+    <string name="start_multiplication_test_button_text">СТАРТ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
