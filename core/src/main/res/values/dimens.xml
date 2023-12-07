@@ -8,5 +8,11 @@
     <dimen name="math_category_item_card_stroke_width">3dp</dimen>
     <dimen name="fragment_standard_side_padding">32dp</dimen>
     <dimen name="test_screen_title_size">28sp</dimen>
+    <dimen name="test_timer_text_size">48sp</dimen>
+    <dimen name="test_task_text_size">64sp</dimen>
+    <dimen name="extra_large_space_between_views">48dp</dimen>
+    <dimen name="large_space_between_views">32dp</dimen>
     <dimen name="standard_space_between_views">16dp</dimen>
+    <dimen name="small_space_between_views">8dp</dimen>
+    <dimen name="extra_small_space_between_views">4dp</dimen>
 </resources>

@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/test_multiplication_fragment_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/fragment_standard_side_padding"
     tools:context=".presentation.view.TestMultiplicationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/multiplication_screen_title"
+        style="@style/screen_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/multiplication_screen_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/test_timer_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        app:layout_constraintTop_toBottomOf="@id/multiplication_screen_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/test_number_text_view"
+            style="@style/test_timer_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/circle_text_view_background"
+            tools:text="5"/>
+
+
+        <TextView
+            android:id="@+id/test_time_milliseconds_text_view"
+            style="@style/test_timer_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="60"/>
+
+        <TextView
+            android:id="@+id/test_time_comma_text_view"
+            style="@style/test_timer_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/test_time_milliseconds_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="."/>
+
+        <TextView
+            android:id="@+id/test_time_seconds_text_view"
+            style="@style/test_timer_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/test_time_comma_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/test_task_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        app:layout_constraintTop_toBottomOf="@id/test_timer_constraint_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/test_task_first_multiplicator_text_view"
+            style="@style/test_task_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/test_task_multiplicator_sign_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/small_space_between_views"/>
+
+        <TextView
+            android:id="@+id/test_task_multiplicator_sign_text_view"
+            style="@style/test_task_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/test_task_first_multiplicator_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/test_task_second_multiplicator_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/small_space_between_views"
+            android:text="x"/>
+
+        <TextView
+            android:id="@+id/test_task_second_multiplicator_text_view"
+            style="@style/test_task_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/test_task_multiplicator_sign_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/test_task_equal_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/small_space_between_views"
+            tools:text="8"/>
+
+        <TextView
+            android:id="@+id/test_task_equal_text_view"
+            style="@style/test_task_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/test_task_second_multiplicator_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/multiplication_result_input_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/small_space_between_views"
+            android:text="="/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="?attr/textInputFilledStyle"
+            android:id="@+id/multiplication_result_input_layout"
+            app:boxBackgroundColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toEndOf="@id/test_task_equal_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/send_answer_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/multiplication_result_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/send_answer_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/multiplication_result_input_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/small_space_between_views"
+            android:src="@drawable/send_answer_icon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

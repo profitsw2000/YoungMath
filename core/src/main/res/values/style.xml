@@ -11,6 +11,15 @@
         <item name="android:alpha">0.75</item>
     </style>
 
+    <style name="test_timer_text_style">
+        <item name="android:textSize">@dimen/test_timer_text_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="test_task_text_style">
+        <item name="android:textSize">@dimen/test_task_text_size</item>
+    </style>
+
     <!-- Shape styles. -->
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>

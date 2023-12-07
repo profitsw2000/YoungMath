@@ -9,7 +9,6 @@
     android:padding="@dimen/fragment_standard_side_padding"
     tools:context=".presentation.view.MultiplicationFragment">
 
-
     <TextView
         android:id="@+id/multiplication_screen_title"
         style="@style/screen_title_text_style"
