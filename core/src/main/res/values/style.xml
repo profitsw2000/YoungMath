@@ -7,6 +7,21 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="screen_sub_title_text_style">
+        <item name="android:textSize">@dimen/result_sub_title_text_size</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="right_answers_number_text_style">
+        <item name="android:textSize">@dimen/result_sub_title_text_size</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="wrong_answers_number_text_style">
+        <item name="android:textSize">@dimen/result_sub_title_text_size</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
     <style name="screen_details_text_style">
         <item name="android:alpha">0.75</item>
     </style>
