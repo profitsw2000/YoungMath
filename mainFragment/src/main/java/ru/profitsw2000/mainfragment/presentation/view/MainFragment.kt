@@ -7,22 +7,26 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import diarynote.mainfragment.R
 import diarynote.mainfragment.databinding.FragmentMainBinding
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.profitsw2000.core.utils.OnMathCategoryClickListener
 import ru.profitsw2000.core.view.CoreFragment
 import ru.profitsw2000.core.viewmodel.CoreViewModel
+import ru.profitsw2000.data.constants.MULTIPLICATION_SCREEN_ID
 import ru.profitsw2000.data.model.MathCategoryModel
 import ru.profitsw2000.mainfragment.presentation.view.adapter.MathCategoriesAdapter
 import ru.profitsw2000.mainfragment.presentation.viewmodel.MainViewModel
+import youngmath.navigator.Navigator
 
 class MainFragment : CoreFragment(R.layout.fragment_main) {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     override val viewModel: MainViewModel by viewModel()
+    private val navigator: Navigator by inject()
     private val adapter = MathCategoriesAdapter(object : OnMathCategoryClickListener{
         override fun onItemClick(categoryId: Int) {
-
+            selectFragmentById(categoryId)
         }
     })
 
@@ -53,5 +57,12 @@ class MainFragment : CoreFragment(R.layout.fragment_main) {
 
     private fun renderData(mathCategoryModelList: List<MathCategoryModel>) {
         adapter.setData(mathCategoryModelList)
+    }
+
+    private fun selectFragmentById(id: Int) {
+        when(id) {
+            MULTIPLICATION_SCREEN_ID -> navigator.navigateToMultiplicationScreen()
+            else -> {}
+        }
     }
 }
