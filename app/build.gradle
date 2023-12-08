@@ -29,4 +29,5 @@ dependencies {
     implementation project(path: Modules.data)
     implementation project(path: Modules.mainFragment)
     implementation project(path: Modules.multiplication)
+    implementation project(path: Modules.navigator)
 }
