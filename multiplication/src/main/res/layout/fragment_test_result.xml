@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/test_result_text_view"
-        style="@style/screen_sub_title_text_style"
+        style="@style/screen_title_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/test_result_sub_screen_title"
