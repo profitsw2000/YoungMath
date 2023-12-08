@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multiplication_nav_graph"
+    app:startDestination="@id/multiplicationFragment">
+
+    <fragment
+        android:id="@+id/multiplicationFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationFragment"
+        android:label="MultiplicationFragment"
+        tools:layout="@layout/fragment_multiplication">
+        <action
+            android:id="@+id/action_multiplicationFragment_to_testMultiplicationFragment"
+            app:destination="@id/testMultiplicationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/testMultiplicationFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.TestMultiplicationFragment"
+        android:label="TestMultiplicationFragment"
+        tools:layout="@layout/fragment_test_multiplication">
+        <action
+            android:id="@+id/action_testMultiplicationFragment_to_testResultFragment"
+            app:destination="@id/testResultFragment"
+            app:popUpTo="@id/multiplicationFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/testResultFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.TestResultFragment"
+        android:label="TestResultFragment"
+        tools:layout="@layout/fragment_test_result"/>
+
+</navigation>

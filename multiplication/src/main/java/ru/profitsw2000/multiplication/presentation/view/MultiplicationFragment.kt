@@ -6,14 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.profitsw2000.multiplication.R
+import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationBinding
 
 class MultiplicationFragment : Fragment() {
+
+    private var _binding: FragmentMultiplicationBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multiplication, container, false)
+        _binding = FragmentMultiplicationBinding.bind(inflater.inflate(R.layout.fragment_multiplication, container, false))
+        return binding.root
     }
+
+
 }
