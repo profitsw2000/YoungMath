@@ -16,4 +16,6 @@
     <dimen name="standard_space_between_views">16dp</dimen>
     <dimen name="small_space_between_views">8dp</dimen>
     <dimen name="extra_small_space_between_views">4dp</dimen>
+    <dimen name="multiplication_table_resilt_edit_text_width">96dp</dimen>
+    <dimen name="multiplication_table_result_edit_text_text_size">48sp</dimen>
 </resources>

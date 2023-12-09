@@ -30,7 +30,7 @@
         android:text="@string/multiplication_screen_before_test_details_text"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/start_multiplication_test_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_space_between_views"

@@ -8,7 +8,7 @@ class NavigatorImpl(
     private val navController: NavController
 ) : Navigator {
     override fun navigateToMultiplicationScreen() {
-        navController.navigate(R.id.multiplicationFragment)
+        navController.navigate(R.id.multiplication_nav_graph)
     }
 
     override fun navigateToMultiplicationTest() {
