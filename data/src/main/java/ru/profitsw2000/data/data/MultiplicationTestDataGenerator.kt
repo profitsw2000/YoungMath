@@ -20,19 +20,24 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     private var currentTaskNumber = 1
     private var firstMultiplier = 0
     private var secondMultiplier = 0
-    private var taskResult = firstMultiplier*secondMultiplier
+    private val taskResult = firstMultiplier*secondMultiplier
     private var userResult = 0
     private var isStarted = false
+    private var resultsArray = Array(tasksNumber) {false}
 
     private var job: Job? = null
     private val mutableTestsDataSource: MutableStateFlow<MultiplicationDataModel> = MutableStateFlow(
-        MultiplicationDataModel(currentTaskTime, currentTaskNumber, firstMultiplier, secondMultiplier)
+        MultiplicationDataModel(currentTaskTime, currentTaskNumber, firstMultiplier, secondMultiplier, isStarted)
     )
     val testsDataSource: StateFlow<MultiplicationDataModel> = mutableTestsDataSource
+
+    private val mutableResultsDataSource: MutableStateFlow<Array<Boolean>> = MutableStateFlow(resultsArray)
+    val resultsDataSource: StateFlow<Array<Boolean>> = mutableResultsDataSource
 
     fun startTest() {
         if (!isStarted) {
             isStarted = !isStarted
+            resultsArray.fill(false)
             generateTaskData()
             job = scope.launch {
                 while (isActive) {
@@ -41,7 +46,8 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
                         currentTaskTime,
                         currentTaskNumber,
                         firstMultiplier,
-                        secondMultiplier
+                        secondMultiplier,
+                        isStarted
                     )
                     delay((taskTimeIncrementStep*1000).toLong())
                 }
@@ -49,7 +55,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
         }
     }
 
-    fun nextTask(result: Int) {
+    private fun incrementTaskNumber(result: Int) {
         currentTaskTime = 0f
         currentTaskNumber++
         userResult = result
@@ -59,13 +65,16 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     private fun incrementTime() {
         currentTaskTime += taskTimeIncrementStep
         if (isTestTimeOver()) {
-            currentTaskTime = 0f
-            if (isLastTest()) {
-                stopTest()
-            } else {
-                generateTaskData()
-                currentTaskNumber++
-            }
+            nextTask(0)
+        }
+    }
+
+    fun nextTask(result: Int) {
+        resultsArray[currentTaskNumber] = (result == taskResult)
+        if (isLastTest()) {
+            stopTest()
+        } else {
+            incrementTaskNumber(result)
         }
     }
 
@@ -78,6 +87,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     }
 
     private fun stopTest() {
+        mutableResultsDataSource.value = resultsArray
         stopJob()
         clearTestData()
     }
@@ -91,6 +101,13 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
         isStarted = !isStarted
         currentTaskTime = 0f
         currentTaskNumber = 1
+        mutableTestsDataSource.value = MultiplicationDataModel(
+            currentTaskTime,
+            currentTaskNumber,
+            firstMultiplier,
+            secondMultiplier,
+            isStarted
+        )
     }
 
     private fun generateTaskData() {

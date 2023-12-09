@@ -4,5 +4,6 @@ data class MultiplicationDataModel (
     val time: Float,
     val taskNumber: Int,
     val firstMultiplier: Int,
-    val secondMultiplier: Int
+    val secondMultiplier: Int,
+    val isTestOn: Boolean
 )

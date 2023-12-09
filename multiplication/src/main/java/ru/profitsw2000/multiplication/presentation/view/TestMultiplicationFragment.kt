@@ -56,6 +56,8 @@ class TestMultiplicationFragment : Fragment() {
 
             if (it.taskNumber != taskNumber) this.multiplicationResultEditText.text?.clear()
             taskNumber = it.taskNumber
+
+            if (!it.isTestOn) navigator.navigateToMultiplicationTestResult()
         }
     }
 

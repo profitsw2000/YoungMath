@@ -23,7 +23,7 @@
         <action
             android:id="@+id/action_testMultiplicationFragment_to_testResultFragment"
             app:destination="@id/testResultFragment"
-            app:popUpTo="@id/multiplicationFragment"
+            app:popUpTo="@id/testMultiplicationFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 

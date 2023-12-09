@@ -1,6 +1,8 @@
 package ru.profitsw2000.youngmath.navigation
 
+import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import ru.profitsw2000.youngmath.R
 import youngmath.navigator.Navigator
 
@@ -16,7 +18,9 @@ class NavigatorImpl(
     }
 
     override fun navigateToMultiplicationTestResult() {
-        navController.navigate(R.id.testResultFragment)
+        val bundle = Bundle()
+        val navOptions = NavOptions.Builder().setPopUpTo(R.id.testMultiplicationFragment, true).build()
+        navController.navigate(R.id.testResultFragment, bundle, navOptions)
     }
 
     override fun navigateUp() {
