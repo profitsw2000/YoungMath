@@ -33,7 +33,7 @@
         style="@style/right_answers_number_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/right_answers_number_text"
+        tools:text="@string/right_answers_number_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test_result_text_view"
         android:layout_marginTop="@dimen/small_space_between_views"/>
@@ -43,7 +43,7 @@
         style="@style/wrong_answers_number_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/wrong_answers_number_text"
+        tools:text="@string/wrong_answers_number_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/right_answers_number_text_view"
         android:layout_marginTop="@dimen/small_space_between_views"/>
