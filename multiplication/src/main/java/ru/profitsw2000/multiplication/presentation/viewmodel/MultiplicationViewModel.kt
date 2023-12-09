@@ -11,6 +11,7 @@ class MultiplicationViewModel (
 ) : CoreViewModel() {
 
     val multiplicationTestLiveData: LiveData<MultiplicationDataModel> = multiplicationRepository.multiplicationTestDataGenerator.testsDataSource.asLiveData()
+    val multiplicationTestResultsLiveData: LiveData<Array<Boolean>> = multiplicationRepository.multiplicationTestDataGenerator.resultsDataSource.asLiveData()
 
     fun startTest() {
         multiplicationRepository.multiplicationTestDataGenerator.startTest()

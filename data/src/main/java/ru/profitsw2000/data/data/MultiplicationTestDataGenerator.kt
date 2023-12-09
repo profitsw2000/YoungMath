@@ -20,7 +20,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     private var currentTaskNumber = 1
     private var firstMultiplier = 0
     private var secondMultiplier = 0
-    private val taskResult = firstMultiplier*secondMultiplier
+    private var taskResult = 0
     private var userResult = 0
     private var isStarted = false
     private var resultsArray = Array(tasksNumber) {false}
@@ -70,7 +70,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     }
 
     fun nextTask(result: Int) {
-        resultsArray[currentTaskNumber] = (result == taskResult)
+        resultsArray[currentTaskNumber - 1] = (result == taskResult)
         if (isLastTest()) {
             stopTest()
         } else {
@@ -113,5 +113,6 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     private fun generateTaskData() {
         firstMultiplier = Random.nextInt(2, 10)
         secondMultiplier = Random.nextInt(2, 10)
+        taskResult = firstMultiplier*secondMultiplier
     }
 }
