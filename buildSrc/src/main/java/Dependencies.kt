@@ -18,6 +18,8 @@ object Modules {
     const val core = ":core"
     const val data = ":data"
     const val mainFragment = ":mainFragment"
+    const val multiplication = ":multiplication"
+    const val navigator = ":navigator"
 }
 
 object Versions {

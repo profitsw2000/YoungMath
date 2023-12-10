@@ -9,5 +9,9 @@
         <item name="colorOnPrimaryContainer">@color/white</item>
         <item name="colorPrimaryInverse">@color/deep_blue</item>
 
+        <!-- Background color. -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+
     </style>
 </resources>

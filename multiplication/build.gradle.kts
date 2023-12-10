@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "diarynote.mainfragment"
+    namespace = "ru.profitsw2000.multiplication"
 }
 
 dependencies {

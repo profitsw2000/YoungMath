@@ -9,5 +9,12 @@
         android:id="@+id/mainFragment"
         android:name="ru.profitsw2000.mainfragment.presentation.view.MainFragment"
         android:label="MainFragment"
-        tools:layout="@layout/fragment_main"/>
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_multiplicationFragment"
+            app:destination="@id/multiplication_nav_graph" />
+    </fragment>
+
+    <include app:graph="@navigation/multiplication_nav_graph"/>
+
 </navigation>

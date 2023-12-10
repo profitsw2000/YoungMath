@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import org.koin.core.context.loadKoinModules
+import org.koin.dsl.module
 import ru.profitsw2000.youngmath.R
 import ru.profitsw2000.youngmath.databinding.ActivityMainBinding
+import ru.profitsw2000.youngmath.navigation.NavigatorImpl
+import youngmath.navigator.Navigator
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,5 +27,6 @@ class MainActivity : AppCompatActivity() {
         ) as NavHostFragment
 
         navController = navHostFragment.navController
+        loadKoinModules(module { single<Navigator> { NavigatorImpl(navController) } })
     }
 }
