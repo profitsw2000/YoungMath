@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fragment_extra__small_border_margin">8dp</dimen>
+    <dimen name="fragment_small_border_margin">16dp</dimen>
+    <dimen name="fragment_standard_border_margin">32dp</dimen>
+    <dimen name="fragment_large_border_margin">48dp</dimen>
+    <dimen name="fragment_extra_large_border_margin">64dp</dimen>
+    <dimen name="math_category_item_card_stroke_width">3dp</dimen>
+    <dimen name="fragment_standard_side_padding">32dp</dimen>
+    <dimen name="test_screen_title_size">28sp</dimen>
+    <dimen name="result_sub_title_text_size">22sp</dimen>
+    <dimen name="test_timer_text_size">48sp</dimen>
+    <dimen name="test_task_text_size">64sp</dimen>
+    <dimen name="extra_large_space_between_views">48dp</dimen>
+    <dimen name="large_space_between_views">32dp</dimen>
+    <dimen name="standard_space_between_views">16dp</dimen>
+    <dimen name="small_space_between_views">8dp</dimen>
+    <dimen name="extra_small_space_between_views">4dp</dimen>
+    <dimen name="multiplication_table_resilt_edit_text_width">96dp</dimen>
+    <dimen name="multiplication_table_result_edit_text_text_size">48sp</dimen>
+</resources>

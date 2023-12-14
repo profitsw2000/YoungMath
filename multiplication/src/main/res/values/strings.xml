@@ -1,0 +1,9 @@
+<resources>
+    <string name="multiplication_screen_title">Проверка таблицы умножения</string>
+    <string name="test_result_sub_screen_title">Результат проверки:</string>
+    <string name="right_answers_number_text">Правильных ответов - %1$s</string>
+    <string name="wrong_answers_number_text">Неверных ответов - %1$s</string>
+    <string name="test_assessment_text">Оценка - </string>
+    <string name="multiplication_screen_before_test_details_text">Чтобы начать тестирование на знание таблицы умножения нажмите кнопку СТАРТ. Пауза при тестировании не допускается, возможна только полная остановка проверки нажатием на кнопку СТОП.</string>
+    <string name="start_multiplication_test_button_text">СТАРТ</string>
+</resources>
