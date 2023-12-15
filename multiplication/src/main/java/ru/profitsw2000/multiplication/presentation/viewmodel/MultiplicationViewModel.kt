@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import ru.profitsw2000.core.viewmodel.CoreViewModel
 import ru.profitsw2000.data.domain.MultiplicationRepository
 import ru.profitsw2000.data.model.MultiplicationDataModel
+import ru.profitsw2000.data.model.MultiplicationHistoryModel
 
 class MultiplicationViewModel (
     private val multiplicationRepository: MultiplicationRepository
@@ -19,5 +20,9 @@ class MultiplicationViewModel (
 
     fun nextTask(result: Int) {
         multiplicationRepository.multiplicationTestDataGenerator.nextTask(result)
+    }
+
+    fun writeMultiplicationTestResult(multiplicationHistoryModel: MultiplicationHistoryModel) {
+
     }
 }
