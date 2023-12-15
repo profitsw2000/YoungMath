@@ -46,7 +46,7 @@ class MultiplicationHistoryMapper {
             userMultiplicationResults = multiplicationHistoryEntity.userMultiplicationResults,
             tasksTime = multiplicationHistoryEntity.tasksTime,
             tasksNumber = multiplicationHistoryEntity.tasksNumber,
-            testTime = ,
+            testTime = getTestTime(multiplicationHistoryEntity.tasksTime),
             results = ,
             isInterrupted = multiplicationHistoryEntity.isInterrupted
         )
@@ -97,5 +97,14 @@ class MultiplicationHistoryMapper {
                 this.add(i*secondMultiplicatorList[index])
             }
         }
+    }
+
+    private fun getTestTime(tasksTime: List<Float>): Float {
+        var testTime = 0f
+
+        tasksTime.forEach {
+            testTime += it
+        }
+        return testTime
     }
 }
