@@ -36,7 +36,7 @@ class MultiplicationHistoryMapper {
             wrongAnswers = getWrongAnswersNumber(
                 multiplicationHistoryEntity.firstMultiplicatorList,
                 multiplicationHistoryEntity.secondMultiplicatorList,
-                multiplicationHistoryEntity.userMultiplicationResults,
+                multiplicationHistoryEntity.userMultiplicationResults
             ),
             firstMultiplicatorList = multiplicationHistoryEntity.firstMultiplicatorList,
             secondMultiplicatorList = multiplicationHistoryEntity.secondMultiplicatorList,
@@ -47,9 +47,24 @@ class MultiplicationHistoryMapper {
             tasksTime = multiplicationHistoryEntity.tasksTime,
             tasksNumber = multiplicationHistoryEntity.tasksNumber,
             testTime = getTestTime(multiplicationHistoryEntity.tasksTime),
-            results = ,
+            results = getTestResults(
+                multiplicationHistoryEntity.firstMultiplicatorList,
+                multiplicationHistoryEntity.secondMultiplicatorList,
+                multiplicationHistoryEntity.userMultiplicationResults),
             isInterrupted = multiplicationHistoryEntity.isInterrupted
         )
+    }
+
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    @JvmName("mapEntityList")
+    fun map(multiplicationHistoryEntityList: List<MultiplicationHistoryEntity>): List<MultiplicationHistoryModel> {
+        return multiplicationHistoryEntityList.map { map(it) }
+    }
+
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    @JvmName("mapModelList")
+    fun map(multiplicationHistoryModelList: List<MultiplicationHistoryModel>): List<MultiplicationHistoryEntity> {
+        return multiplicationHistoryModelList.map { map(it) }
     }
 
     private fun getAssessment(firstMultiplicatorList: List<Int>,
@@ -106,5 +121,15 @@ class MultiplicationHistoryMapper {
             testTime += it
         }
         return testTime
+    }
+
+    private fun getTestResults(firstMultiplicatorList: List<Int>,
+                              secondMultiplicatorList: List<Int>,
+                              multiplicationResults: List<Int>): List<Boolean> {
+        return mutableListOf<Boolean>().apply {
+            firstMultiplicatorList.forEachIndexed { index, i ->
+                this.add(i*secondMultiplicatorList[index] == multiplicationResults[index])
+            }
+        }
     }
 }
