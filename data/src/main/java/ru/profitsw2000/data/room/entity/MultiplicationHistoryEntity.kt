@@ -9,9 +9,9 @@ data class MultiplicationHistoryEntity(
     @PrimaryKey
     val id: Int,
     val testDate: Date,
-    val firstMultiplicator: Int,
-    val secondMultiplicator: Int,
-    val userMathResult: Int,
+    val firstMultiplicatorList: List<Int>,
+    val secondMultiplicatorList: List<Int>,
+    val userMathResult: List<Int>,
     val tasksTime: List<Float>,
     val isInterrupted: Boolean
 )
