@@ -39,4 +39,9 @@ class MultiplicationFragment : Fragment() {
             navigator.navigateToMultiplicationTest()
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

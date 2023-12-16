@@ -76,4 +76,9 @@ class TestMultiplicationFragment : Fragment() {
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

@@ -6,7 +6,7 @@ import java.util.Date
 
 @Entity
 data class MultiplicationHistoryEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val testDate: Date,
     val firstMultiplicatorList: List<Int>,
