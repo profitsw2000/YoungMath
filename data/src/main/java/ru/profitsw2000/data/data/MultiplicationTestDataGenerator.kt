@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 import ru.profitsw2000.data.model.MultiplicationDataModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import java.util.Calendar
-import java.util.Date
 import kotlin.random.Random
 
 private const val taskTimeIncrementStep = 0.02f
@@ -21,7 +20,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
 
     //variables to write to database
     private var testDate = Calendar.getInstance().time
-    private var assessment = 0
+    private val assessment get() = testAssessment()
     private var rightAnswers = 0
     private var wrongAnswers = 0
     private val firstMultiplicatorList = mutableListOf<Int>()
@@ -29,7 +28,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     private val multiplicationResults = mutableListOf<Int>()
     private val userMultiplicationResults = mutableListOf<Int>()
     private val tasksTime = mutableListOf<Float>()
-    private val testTime get() = getTestTotalTime(tasksTime)
+    private val testTime get() = getTestTotalTime()
     private val results = mutableListOf<Boolean>()
     private var isInterrupted = false
 
@@ -72,7 +71,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
 
     fun startTest() {
         if (!isStarted) {
-            isStarted = !isStarted
+            isStarted = true
             resultsArray.fill(false)
             generateTaskData()
             initDbVariables()
@@ -132,6 +131,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
 
     private fun stopTest() {
         mutableResultsDataSource.value = resultsArray
+        writeDbVariables()
         stopJob()
         clearTestData()
     }
@@ -142,7 +142,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     }
 
     private fun clearTestData() {
-        isStarted = !isStarted
+        isStarted = false
         currentTaskTime = 0f
         currentTaskNumber = 1
         mutableTestsDataSource.value = MultiplicationDataModel(
@@ -161,7 +161,6 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
 
     private fun initDbVariables() {
         testDate = Calendar.getInstance().time
-        assessment = 2
         rightAnswers = 0
         wrongAnswers = 0
         firstMultiplicatorList.clear()
@@ -181,7 +180,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
         secondMultiplicatorList.add(secondMultiplier)
         multiplicationResults.add(taskResult)
         userMultiplicationResults.add(result)
-        tasksTime.add(taskTime)
+        tasksTime.add(currentTaskTime)
         results.add(taskResult == result)
     }
 
@@ -204,12 +203,21 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
         )
     }
 
-    private fun getTestTotalTime(timeList: List<Float>): Float {
+    private fun getTestTotalTime(): Float {
         var totalTime = 0f
 
         tasksTime.forEach {
             totalTime += it
         }
         return totalTime
+    }
+
+    private fun testAssessment(): Int {
+        return when(tasksNumber - rightAnswers) {
+            0 -> 5
+            1 -> 4
+            2 -> 3
+            else -> 2
+        }
     }
 }

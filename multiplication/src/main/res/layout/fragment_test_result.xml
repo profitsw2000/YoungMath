@@ -69,4 +69,14 @@
         app:layout_constraintTop_toTopOf="@+id/result_assessment_title_text_view"
         tools:text="4" />
 
+    <TextView
+        android:id="@+id/total_test_time_text_view"
+        style="@style/screen_small_sub_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/total_test_time_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_assessment_title_text_view"
+        android:layout_marginTop="@dimen/small_space_between_views"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

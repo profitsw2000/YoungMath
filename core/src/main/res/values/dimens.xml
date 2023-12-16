@@ -9,6 +9,7 @@
     <dimen name="fragment_standard_side_padding">32dp</dimen>
     <dimen name="test_screen_title_size">28sp</dimen>
     <dimen name="result_sub_title_text_size">22sp</dimen>
+    <dimen name="result_small_sub_title_text_size">16sp</dimen>
     <dimen name="test_timer_text_size">48sp</dimen>
     <dimen name="test_task_text_size">64sp</dimen>
     <dimen name="extra_large_space_between_views">48dp</dimen>

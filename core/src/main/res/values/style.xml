@@ -12,6 +12,11 @@
         <item name="android:alpha">0.75</item>
     </style>
 
+    <style name="screen_small_sub_title_text_style">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
     <style name="right_answers_number_text_style">
         <item name="android:textSize">@dimen/result_sub_title_text_size</item>
         <item name="android:textColor">@color/green</item>

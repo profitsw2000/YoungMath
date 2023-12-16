@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import ru.profitsw2000.multiplication.R
 import ru.profitsw2000.multiplication.databinding.FragmentTestResultBinding
 import ru.profitsw2000.multiplication.presentation.viewmodel.MultiplicationViewModel
@@ -32,46 +33,30 @@ class TestResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        observeData()
+        observeTestHistoryData()
     }
 
     private fun initViews() = with(binding) {
 
     }
 
-    private fun observeData() {
-        multiplicationViewModel.multiplicationTestResultsLiveData.observe(viewLifecycleOwner) {
+    private fun observeTestHistoryData() {
+        multiplicationViewModel.multiplicationHistoryResultsLiveData.observe(viewLifecycleOwner) {
             showResult(it)
         }
     }
 
-    private fun showResult(results: Array<Boolean>) = with(binding) {
+    private fun showResult(multiplicationHistoryModel: MultiplicationHistoryModel) = with(binding) {
         rightAnswersNumberTextView.text = getString(R.string.right_answers_number_text,
-            getBoolElementsInArrayNumber(true, results).toString())
+            multiplicationHistoryModel.rightAnswers.toString())
         wrongAnswersNumberTextView.text = getString(R.string.wrong_answers_number_text,
-            getBoolElementsInArrayNumber(false, results).toString())
-        resultAssessmentTextView.text = getAssessment(results).toString()
+            multiplicationHistoryModel.wrongAnswers.toString())
+        resultAssessmentTextView.text = multiplicationHistoryModel.assessment.toString()
         context?.let {
-            resultAssessmentTextView.setTextColor(ContextCompat.getColor(it, getAssessmentTextColor(getAssessment(results))))
+            resultAssessmentTextView.setTextColor(ContextCompat.getColor(it, getAssessmentTextColor(multiplicationHistoryModel.assessment)))
         }
-    }
-
-    private fun getBoolElementsInArrayNumber(element: Boolean, results: Array<Boolean>): Int {
-        var number = 0
-
-        results.forEach {
-            if (it == element) number++
-        }
-        return number
-    }
-
-    private fun getAssessment(results: Array<Boolean>): Int {
-        return when(getBoolElementsInArrayNumber(false, results)) {
-            0 -> 5
-            1 -> 4
-            2 -> 3
-            else -> 2
-        }
+        totalTestTimeTextView.text = getString(R.string.total_test_time_text,
+            "%.2f".format(multiplicationHistoryModel.testTime))
     }
 
     private fun getAssessmentTextColor(assessment: Int): Int {

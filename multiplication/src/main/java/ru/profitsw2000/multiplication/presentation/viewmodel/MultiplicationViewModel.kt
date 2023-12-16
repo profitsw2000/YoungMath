@@ -28,6 +28,10 @@ class MultiplicationViewModel (
         multiplicationRepository.multiplicationTestDataGenerator.startTest()
     }
 
+    fun skipTest() {
+        multiplicationRepository.multiplicationTestDataGenerator.skipTest()
+    }
+
     fun nextTask(result: Int) {
         multiplicationRepository.multiplicationTestDataGenerator.nextTask(result)
     }
