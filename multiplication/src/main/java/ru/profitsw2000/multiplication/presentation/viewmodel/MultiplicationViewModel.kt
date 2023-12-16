@@ -19,6 +19,8 @@ class MultiplicationViewModel (
 
     val multiplicationTestLiveData: LiveData<MultiplicationDataModel> = multiplicationRepository.multiplicationTestDataGenerator.testsDataSource.asLiveData()
     val multiplicationTestResultsLiveData: LiveData<Array<Boolean>> = multiplicationRepository.multiplicationTestDataGenerator.resultsDataSource.asLiveData()
+    val multiplicationHistoryResultsLiveData: LiveData<MultiplicationHistoryModel> = multiplicationRepository.multiplicationTestDataGenerator.multiplicationHistoryDataSource.asLiveData()
+
     private val _multiplicationHistoryLiveData = MutableLiveData<MultiplicationHistoryState>()
     val multiplicationHistoryLiveData: LiveData<MultiplicationHistoryState> by this::_multiplicationHistoryLiveData
 
@@ -47,7 +49,4 @@ class MultiplicationViewModel (
             )
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }
