@@ -9,4 +9,6 @@
     <string name="start_multiplication_test_button_text">СТАРТ</string>
     <string name="back_button_text">НАЗАД</string>
     <string name="skip_test_button_text">СТОП</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
