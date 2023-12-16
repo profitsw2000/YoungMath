@@ -42,7 +42,9 @@ class TestResultFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-
+        backToMainMultiplicationScreenButton.setOnClickListener {
+            navigator.navigateUp()
+        }
     }
 
     private fun observeTestHistoryData() {

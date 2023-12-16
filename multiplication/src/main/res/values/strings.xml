@@ -7,4 +7,6 @@
     <string name="total_test_time_text">Время выполнения теста - %1$s сек.</string>
     <string name="multiplication_screen_before_test_details_text">Чтобы начать тестирование на знание таблицы умножения нажмите кнопку СТАРТ. Пауза при тестировании не допускается, возможна только полная остановка проверки нажатием на кнопку СТОП.</string>
     <string name="start_multiplication_test_button_text">СТАРТ</string>
+    <string name="back_button_text">НАЗАД</string>
+    <string name="skip_test_button_text">СТОП</string>
 </resources>

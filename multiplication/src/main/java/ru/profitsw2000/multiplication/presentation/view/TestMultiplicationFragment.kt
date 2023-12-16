@@ -43,6 +43,9 @@ class TestMultiplicationFragment : Fragment() {
                 if (this != "") multiplicationViewModel.nextTask(this.toInt())
             }
         }
+        skipTestButton.setOnClickListener {
+            multiplicationViewModel.skipTest()
+        }
         multiplicationResultEditText.showKeyboard()
     }
 
@@ -65,13 +68,13 @@ class TestMultiplicationFragment : Fragment() {
         return "%.2f".format(timeWithMillis)
     }
 
-    fun View.showKeyboard() {
+    private fun View.showKeyboard() {
         this.requestFocus()
         val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
     }
 
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
