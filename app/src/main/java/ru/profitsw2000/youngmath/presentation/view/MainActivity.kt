@@ -28,5 +28,15 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
         loadKoinModules(module { single<Navigator> { NavigatorImpl(navController) } })
+
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(false)
+
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            when(destination.id) {
+                R.id.multiplicationFragment -> actionBar?.show()
+                else -> actionBar?.hide()
+            }
+        }
     }
 }
