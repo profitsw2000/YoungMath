@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Таблица умножения" />
+            android:text="@string/multiplication_table_category_title" />
 
         <TextView
             android:id="@+id/test_assessment_text_view"
