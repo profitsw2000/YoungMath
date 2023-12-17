@@ -43,6 +43,7 @@ class MultiplicationHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observeData()
+        multiplicationViewModel.getMultiplicationTestResultsList()
     }
 
     private fun initViews() = with(binding) {
@@ -65,7 +66,8 @@ class MultiplicationHistoryFragment : Fragment() {
     private fun handleError(message: String) = with(binding) {
         Snackbar.make(this.historyFragmentRootLayout, message, Snackbar.LENGTH_INDEFINITE)
             .setAction(getString(ru.profitsw2000.core.R.string.snackbar_reload_text)) {
-                 }
+                multiplicationViewModel.getMultiplicationTestResultsList()
+            }
             .show()
     }
 
