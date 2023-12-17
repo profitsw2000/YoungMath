@@ -9,6 +9,7 @@
     app:cardBackgroundColor="@color/transparent_green"
     app:strokeColor="@color/deep_blue"
     app:strokeWidth="2dp"
+    android:layout_marginTop="@dimen/standard_space_between_views"
     app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent">
 
     <androidx.constraintlayout.widget.ConstraintLayout

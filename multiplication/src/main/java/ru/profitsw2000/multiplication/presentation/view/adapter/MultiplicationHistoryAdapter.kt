@@ -46,8 +46,8 @@ class MultiplicationHistoryAdapter(
             testAssessment.text = context.getString(R.string.test_assessment_text,
                 data[position].assessment.toString())
             testDuration.text = context.getString(R.string.total_test_time_text,
-                data[position].testTime.toString())
-            testDate.text = SimpleDateFormat("dd.MM.yyyy hh:mm").format(data[position])
+                "%.2f".format(data[position].testTime))
+            testDate.text = SimpleDateFormat("dd.MM.yyyy HH:mm").format(data[position].testDate)
             testId.text = context.getString(R.string.test_id_number_text,
                 data[position].id.toString())
 
@@ -63,21 +63,21 @@ class MultiplicationHistoryAdapter(
 
     private fun getViewTextColorFromAssessment(context: Context, assessment: Int): Int {
         return when(assessment) {
-            5 -> context.getColor(ru.profitsw2000.core.R.color.green)
-            4 -> context.getColor(ru.profitsw2000.core.R.color.lime)
-            3 -> context.getColor(ru.profitsw2000.core.R.color.deep_blue)
-            2 -> context.getColor(ru.profitsw2000.core.R.color.red)
-            else -> context.getColor(ru.profitsw2000.core.R.color.red)
+            5 -> ru.profitsw2000.core.R.color.green
+            4 -> ru.profitsw2000.core.R.color.lime
+            3 -> ru.profitsw2000.core.R.color.deep_blue
+            2 -> ru.profitsw2000.core.R.color.red
+            else -> ru.profitsw2000.core.R.color.red
         }
     }
 
     private fun getCardBackgroundColorFromAssessment(context: Context, assessment: Int): Int {
         return when(assessment) {
-            5 -> context.getColor(ru.profitsw2000.core.R.color.transparent_green)
-            4 -> context.getColor(ru.profitsw2000.core.R.color.transparent_lime)
-            3 -> context.getColor(ru.profitsw2000.core.R.color.transparent_blue)
-            2 -> context.getColor(ru.profitsw2000.core.R.color.transparent_red)
-            else -> context.getColor(ru.profitsw2000.core.R.color.transparent_red)
+            5 -> ru.profitsw2000.core.R.color.transparent_green
+            4 -> ru.profitsw2000.core.R.color.transparent_lime
+            3 -> ru.profitsw2000.core.R.color.transparent_blue
+            2 -> ru.profitsw2000.core.R.color.transparent_red
+            else -> ru.profitsw2000.core.R.color.transparent_red
         }
     }
 

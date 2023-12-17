@@ -49,7 +49,7 @@ class MultiplicationFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.history -> {
-                Toast.makeText(context, "History", Toast.LENGTH_SHORT).show()
+                navigator.navigateToMultiplicationHistory()
                 true
             }
             R.id.settings -> {
