@@ -1,6 +1,7 @@
 package ru.profitsw2000.data.data
 
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -14,7 +15,12 @@ class MultiplicationRepositoryImpl(
     private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     override val multiplicationTestDataGenerator: MultiplicationTestDataGenerator = MultiplicationTestDataGenerator(coroutineScope)
+
     override fun writeMultiplicationTestResult(multiplicationHistoryEntity: MultiplicationHistoryEntity): Completable {
         return database.multiplicationDao.insert(multiplicationHistoryEntity)
+    }
+
+    override fun getMultiplicationTestResultsList(): Single<List<MultiplicationHistoryEntity>> {
+        return database.multiplicationDao.all()
     }
 }

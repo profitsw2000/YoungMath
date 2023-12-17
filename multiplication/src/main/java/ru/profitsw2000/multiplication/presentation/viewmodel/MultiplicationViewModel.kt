@@ -52,4 +52,20 @@ class MultiplicationViewModel (
             )
     }
 
+    fun getMultiplicationTestResultsList() {
+        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+        multiplicationRepository.getMultiplicationTestResultsList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryMapper.map(it))
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                }
+            )
+    }
+
 }
