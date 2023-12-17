@@ -8,6 +8,7 @@
     <dimen name="math_category_item_card_stroke_width">3dp</dimen>
     <dimen name="fragment_standard_side_padding">32dp</dimen>
     <dimen name="test_screen_title_size">28sp</dimen>
+    <dimen name="small_test_screen_title_size">20sp</dimen>
     <dimen name="result_sub_title_text_size">22sp</dimen>
     <dimen name="result_small_sub_title_text_size">16sp</dimen>
     <dimen name="result_extra_small_sub_title_text_size">14sp</dimen>

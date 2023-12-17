@@ -7,6 +7,11 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="small_screen_title_text_style">
+        <item name="android:textSize">@dimen/small_test_screen_title_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="screen_sub_title_text_style">
         <item name="android:textSize">@dimen/result_sub_title_text_size</item>
         <item name="android:alpha">0.75</item>
@@ -15,6 +20,22 @@
     <style name="screen_small_sub_title_text_style">
         <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
         <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style_green">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style_red">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style_red_bold">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="screen_extra_small_sub_title_text_style">
