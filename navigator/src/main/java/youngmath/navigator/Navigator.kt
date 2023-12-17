@@ -8,6 +8,8 @@ interface Navigator {
 
     fun navigateToMultiplicationTestResult()
 
+    fun navigateToMultiplicationHistory()
+
     fun navigateUp()
 
 }

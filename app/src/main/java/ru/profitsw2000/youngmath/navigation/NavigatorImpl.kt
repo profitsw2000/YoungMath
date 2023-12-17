@@ -23,6 +23,10 @@ class NavigatorImpl(
         navController.navigate(R.id.testResultFragment, bundle, navOptions)
     }
 
+    override fun navigateToMultiplicationHistory() {
+        navController.navigate(R.id.multiplicationHistoryFragment)
+    }
+
     override fun navigateUp() {
         navController.navigateUp()
     }
