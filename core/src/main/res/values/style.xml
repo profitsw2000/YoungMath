@@ -17,6 +17,11 @@
         <item name="android:alpha">0.75</item>
     </style>
 
+    <style name="screen_extra_small_sub_title_text_style">
+        <item name="android:textSize">@dimen/result_extra_small_sub_title_text_size</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
     <style name="right_answers_number_text_style">
         <item name="android:textSize">@dimen/result_sub_title_text_size</item>
         <item name="android:textColor">@color/green</item>
@@ -38,6 +43,10 @@
 
     <style name="test_task_text_style">
         <item name="android:textSize">@dimen/test_task_text_size</item>
+    </style>
+
+    <style name="history_list_item_test_type_text_style">
+        <item name="android:textSize">@dimen/history_list_item_test_type_text_size</item>
     </style>
 
     <!-- Shape styles. -->

@@ -8,4 +8,8 @@
     <color name="red">#FF0000</color>
     <color name="yellow">#FFFF00</color>
     <color name="lime">#00FF00</color>
+    <color name="transparent_red">#01FF0000</color>
+    <color name="transparent_green">#10008000</color>
+    <color name="transparent_blue">#102342F3</color>
+    <color name="transparent_lime">#1000FF00</color>
 </resources>
