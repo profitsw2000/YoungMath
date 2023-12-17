@@ -64,7 +64,8 @@ class TestResultFragment : Fragment() {
             multiplicationHistoryModel.rightAnswers.toString())
         wrongAnswersNumberTextView.text = getString(R.string.wrong_answers_number_text,
             multiplicationHistoryModel.wrongAnswers.toString())
-        resultAssessmentTextView.text = multiplicationHistoryModel.assessment.toString()
+        resultAssessmentTextView.text = getString(R.string.test_assessment_text,
+            multiplicationHistoryModel.assessment.toString())
         context?.let {
             resultAssessmentTextView.setTextColor(ContextCompat.getColor(it, getAssessmentTextColor(multiplicationHistoryModel.assessment)))
         }

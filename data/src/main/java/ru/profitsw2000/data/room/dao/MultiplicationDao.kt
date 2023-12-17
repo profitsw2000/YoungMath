@@ -13,7 +13,7 @@ import ru.profitsw2000.data.room.entity.MultiplicationHistoryEntity
 @Dao
 interface MultiplicationDao {
 
-    @Query("SELECT * FROM MultiplicationHistoryEntity")
+    @Query("SELECT * FROM MultiplicationHistoryEntity ORDER BY testDate DESC")
     fun all(): Single<List<MultiplicationHistoryEntity>>
 
     @Query("SELECT * FROM MultiplicationHistoryEntity WHERE id LIKE :testId")
