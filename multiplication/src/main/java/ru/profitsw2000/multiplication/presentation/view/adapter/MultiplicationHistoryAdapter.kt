@@ -59,7 +59,6 @@ class MultiplicationHistoryAdapter(
             cardView.strokeColor = ContextCompat.getColor(context,
                 getViewTextColorFromAssessment(context, data[position].assessment))
         }
-        //holder.cardView.setCardBackgroundColor(holder.cardView.context)
     }
 
     private fun getViewTextColorFromAssessment(context: Context, assessment: Int): Int {
