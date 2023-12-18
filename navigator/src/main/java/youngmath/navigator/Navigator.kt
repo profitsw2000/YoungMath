@@ -10,6 +10,8 @@ interface Navigator {
 
     fun navigateToMultiplicationHistory()
 
+    fun navigateToMultiplicationHistoryDetails()
+
     fun navigateUp()
 
 }
