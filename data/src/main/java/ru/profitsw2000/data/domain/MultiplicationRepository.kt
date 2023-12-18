@@ -12,4 +12,6 @@ interface MultiplicationRepository {
 
     fun getMultiplicationTestResultsList(): Single<List<MultiplicationHistoryEntity>>
 
+    fun getMultiplicationTestResultById(testId: Int): Single<MultiplicationHistoryEntity>
+
 }

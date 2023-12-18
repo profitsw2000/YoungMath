@@ -17,7 +17,7 @@ interface MultiplicationDao {
     fun all(): Single<List<MultiplicationHistoryEntity>>
 
     @Query("SELECT * FROM MultiplicationHistoryEntity WHERE id LIKE :testId")
-    fun getMultiplicationTestById(testId: Int): Single<List<MultiplicationHistoryEntity>>
+    fun getMultiplicationTestById(testId: Int): Single<MultiplicationHistoryEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(multiplicationHistoryEntity: MultiplicationHistoryEntity): Completable

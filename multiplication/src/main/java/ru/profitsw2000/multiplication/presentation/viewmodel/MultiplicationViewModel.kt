@@ -69,7 +69,21 @@ class MultiplicationViewModel (
     }
 
     fun getMultiplicationTestResultsListById(testId: Int) {
-
+        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+        multiplicationRepository.getMultiplicationTestResultById(testId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryMapper.map(
+                        arrayListOf(it)
+                    ))
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                }
+            )
     }
 
 }
