@@ -68,4 +68,8 @@ class MultiplicationViewModel (
             )
     }
 
+    fun getMultiplicationTestResultsListById(testId: Int) {
+
+    }
+
 }

@@ -95,6 +95,19 @@
             android:layout_marginTop="@dimen/small_space_between_views"
             android:visibility="gone"/>
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/main_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="test_result_text_view,
+                        right_answers_number_text_view,
+                        wrong_answers_number_text_view,
+                        result_assessment_text_view,
+                        total_test_time_text_view,
+                        test_date_text_view,
+                        test_was_skipped_text_view"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
