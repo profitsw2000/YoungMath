@@ -44,7 +44,7 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
         }
     }
 
-    private fun initViews() = with(binding) {
+    private fun initViews() {
 
     }
 
