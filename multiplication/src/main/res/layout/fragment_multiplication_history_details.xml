@@ -8,99 +8,114 @@
     android:layout_height="match_parent"
     tools:context=".presentation.view.MultiplicationHistoryDetailsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/details_main_constraint_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/fragment_standard_border_margin">
+        android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="gone"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_main_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/fragment_standard_border_margin">
 
-        <TextView
-            android:id="@+id/test_result_text_view"
-            style="@style/small_screen_title_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/multiplication_table_category_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/standard_space_between_views"/>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/right_answers_number_text_view"
-            style="@style/screen_small_sub_title_text_style_green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@string/right_answers_number_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/test_result_text_view"
-            android:layout_marginTop="@dimen/small_space_between_views"/>
+            <TextView
+                android:id="@+id/test_result_text_view"
+                style="@style/small_screen_title_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multiplication_table_category_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/standard_space_between_views"/>
 
-        <TextView
-            android:id="@+id/wrong_answers_number_text_view"
-            style="@style/screen_small_sub_title_text_style_red"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@string/wrong_answers_number_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/right_answers_number_text_view"
-            android:layout_marginTop="@dimen/small_space_between_views"/>
+            <TextView
+                android:id="@+id/right_answers_number_text_view"
+                style="@style/screen_small_sub_title_text_style_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/right_answers_number_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/test_result_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"/>
 
-        <TextView
-            android:id="@+id/result_assessment_text_view"
-            style="@style/screen_small_sub_title_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/test_assessment_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wrong_answers_number_text_view"
-            android:layout_marginTop="@dimen/small_space_between_views"/>
+            <TextView
+                android:id="@+id/wrong_answers_number_text_view"
+                style="@style/screen_small_sub_title_text_style_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/wrong_answers_number_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/right_answers_number_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"/>
 
-        <TextView
-            android:id="@+id/total_test_time_text_view"
-            style="@style/screen_small_sub_title_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@string/total_test_time_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/result_assessment_text_view"
-            android:layout_marginTop="@dimen/small_space_between_views"/>
+            <TextView
+                android:id="@+id/result_assessment_text_view"
+                style="@style/screen_small_sub_title_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test_assessment_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wrong_answers_number_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"/>
 
-        <TextView
-            android:id="@+id/test_date_text_view"
-            style="@style/screen_small_sub_title_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@string/test_execution_date_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/total_test_time_text_view"
-            android:layout_marginTop="@dimen/small_space_between_views"/>
+            <TextView
+                android:id="@+id/total_test_time_text_view"
+                style="@style/screen_small_sub_title_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/total_test_time_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/result_assessment_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"/>
 
-        <TextView
-            android:id="@+id/test_was_skipped_text_view"
-            style="@style/screen_small_sub_title_text_style_red_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Прерван"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/test_date_text_view"
-            android:layout_marginTop="@dimen/small_space_between_views"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/test_date_text_view"
+                style="@style/screen_small_sub_title_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/test_execution_date_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/total_test_time_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"/>
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/main_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:constraint_referenced_ids="test_result_text_view,
+            <TextView
+                android:id="@+id/test_was_skipped_text_view"
+                style="@style/screen_small_sub_title_text_style_red_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test_skipped_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/test_date_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/examples_title_text_view"
+                style="@style/small_screen_title_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/examples_list_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/test_was_skipped_text_view"
+                android:layout_marginTop="@dimen/small_space_between_views"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/main_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="test_result_text_view,
                         right_answers_number_text_view,
                         wrong_answers_number_text_view,
                         result_assessment_text_view,
@@ -108,6 +123,20 @@
                         test_date_text_view,
                         test_was_skipped_text_view"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/examples_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/fragment_standard_border_margin"
+            android:paddingVertical="@dimen/standard_space_between_views">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 </androidx.core.widget.NestedScrollView>

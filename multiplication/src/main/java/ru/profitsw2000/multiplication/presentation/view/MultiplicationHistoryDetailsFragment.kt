@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -62,6 +63,7 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
     }
 
     private fun handleError(message: String) = with(binding) {
+        setProgressBarVisible(false)
         Snackbar.make(this.multiplicationHistoryDetailsFragmentRootLayout, message, Snackbar.LENGTH_INDEFINITE)
             .setAction(getString(ru.profitsw2000.core.R.string.snackbar_reload_text)) {
                 multiplicationViewModel.getMultiplicationTestResultsList()
@@ -80,6 +82,7 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
     }
 
     private fun handleSuccess(multiplicationHistoryModel: MultiplicationHistoryModel) {
+        setProgressBarVisible(false)
         populateViews(multiplicationHistoryModel)
         addExamples(multiplicationHistoryModel)
     }
@@ -92,9 +95,9 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
         resultAssessmentTextView.text = getString(R.string.test_assessment_text,
             multiplicationHistoryModel.assessment.toString())
         totalTestTimeTextView.text = getString(R.string.total_test_time_text,
-            multiplicationHistoryModel.testTime.toString())
+            "%.2f".format(multiplicationHistoryModel.testTime))
         testDateTextView.text = getString(R.string.test_execution_date_text,
-            SimpleDateFormat("dd.MM.yyyy HH:mm").format(multiplicationHistoryModel.testDate.toString()))
+            SimpleDateFormat("dd.MM.yyyy HH:mm").format(multiplicationHistoryModel.testDate))
         if (multiplicationHistoryModel.isInterrupted) testWasSkippedTextView.visibility = View.VISIBLE
         else testWasSkippedTextView.visibility = View.GONE
     }
@@ -104,15 +107,21 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
         val secondMultiplicatorList = multiplicationHistoryModel.secondMultiplicatorList
         val userMultiplicationResultsList = multiplicationHistoryModel.userMultiplicationResults
         val multiplicationResultsList = multiplicationHistoryModel.multiplicationResults
-        val constraintLayout = detailsMainConstraintLayout
+        val constraintLayout = examplesLinearLayout
 
         firstMultiplicatorList.forEachIndexed { index, element ->
             val exampleTextView = TextView(context)
-            exampleTextView.text = "$element * ${secondMultiplicatorList[index]} = $userMultiplicationResultsList"
+
+            exampleTextView.text = "${index + 1})   $element * ${secondMultiplicatorList[index]} = ${userMultiplicationResultsList[index]}"
             exampleTextView.setTextColor(getTextColorFromResult(
                 userMultiplicationResultsList[index],
-                multiplicationResultsList[index]
-            ))
+                multiplicationResultsList[index])
+            )
+            exampleTextView.textSize = resources.getDimension(ru.profitsw2000.core.R.dimen.result_small_sub_title_text_size) / resources.displayMetrics.density
+            exampleTextView.setPadding(0, 0, 0,
+                resources.getDimension(ru.profitsw2000.core.R.dimen.extra_small_space_between_views)
+                    .toInt()
+            )
             constraintLayout.addView(exampleTextView)
         }
     }

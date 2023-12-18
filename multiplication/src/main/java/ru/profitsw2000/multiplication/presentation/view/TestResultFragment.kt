@@ -107,7 +107,7 @@ class TestResultFragment : Fragment() {
     private fun getAssessmentTextColor(assessment: Int): Int {
         return when(assessment) {
             5 -> ru.profitsw2000.core.R.color.green
-            4 -> ru.profitsw2000.core.R.color.lime
+            4 -> ru.profitsw2000.core.R.color.orange
             3 -> ru.profitsw2000.core.R.color.deep_blue
             2 -> ru.profitsw2000.core.R.color.red
             else -> ru.profitsw2000.core.R.color.red

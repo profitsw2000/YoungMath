@@ -64,7 +64,7 @@ class MultiplicationHistoryAdapter(
     private fun getViewTextColorFromAssessment(context: Context, assessment: Int): Int {
         return when(assessment) {
             5 -> ru.profitsw2000.core.R.color.green
-            4 -> ru.profitsw2000.core.R.color.lime
+            4 -> ru.profitsw2000.core.R.color.orange
             3 -> ru.profitsw2000.core.R.color.deep_blue
             2 -> ru.profitsw2000.core.R.color.red
             else -> ru.profitsw2000.core.R.color.red
@@ -74,7 +74,7 @@ class MultiplicationHistoryAdapter(
     private fun getCardBackgroundColorFromAssessment(context: Context, assessment: Int): Int {
         return when(assessment) {
             5 -> ru.profitsw2000.core.R.color.transparent_green
-            4 -> ru.profitsw2000.core.R.color.transparent_lime
+            4 -> ru.profitsw2000.core.R.color.transparent_orange
             3 -> ru.profitsw2000.core.R.color.transparent_blue
             2 -> ru.profitsw2000.core.R.color.transparent_red
             else -> ru.profitsw2000.core.R.color.transparent_red

@@ -1,5 +1,7 @@
 package youngmath.navigator
 
+import android.os.Bundle
+
 interface Navigator {
 
     fun navigateToMultiplicationScreen()
@@ -10,7 +12,7 @@ interface Navigator {
 
     fun navigateToMultiplicationHistory()
 
-    fun navigateToMultiplicationHistoryDetails()
+    fun navigateToMultiplicationHistoryDetails(bundle: Bundle)
 
     fun navigateUp()
 

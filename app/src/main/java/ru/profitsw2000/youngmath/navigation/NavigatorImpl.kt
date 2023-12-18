@@ -27,8 +27,8 @@ class NavigatorImpl(
         navController.navigate(R.id.multiplicationHistoryFragment)
     }
 
-    override fun navigateToMultiplicationHistoryDetails() {
-        navController.navigate(R.id.multiplicationHistoryDetailsFragment)
+    override fun navigateToMultiplicationHistoryDetails(bundle: Bundle) {
+        navController.navigate(R.id.multiplicationHistoryDetailsFragment, bundle)
     }
 
     override fun navigateUp() {

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.profitsw2000.core.utils.OnMathCategoryClickListener
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
@@ -15,8 +16,10 @@ import ru.profitsw2000.data.model.state.MultiplicationHistoryState
 import ru.profitsw2000.multiplication.R
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationBinding
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationHistoryBinding
+import ru.profitsw2000.multiplication.presentation.view.MultiplicationHistoryDetailsFragment.Companion.TEST_ID
 import ru.profitsw2000.multiplication.presentation.view.adapter.MultiplicationHistoryAdapter
 import ru.profitsw2000.multiplication.presentation.viewmodel.MultiplicationViewModel
+import youngmath.navigator.Navigator
 
 
 class MultiplicationHistoryFragment : Fragment() {
@@ -24,9 +27,14 @@ class MultiplicationHistoryFragment : Fragment() {
     private var _binding: FragmentMultiplicationHistoryBinding? = null
     private val binding get() = _binding!!
     private val multiplicationViewModel: MultiplicationViewModel by viewModel()
+    private val navigator: Navigator by inject()
     private val adapter = MultiplicationHistoryAdapter(object : OnMathCategoryClickListener{
         override fun onItemClick(categoryId: Int) {
-
+            val bundle = Bundle().apply {
+                putInt(TEST_ID, categoryId)
+            }
+            this@MultiplicationHistoryFragment.arguments = bundle
+            navigator.navigateToMultiplicationHistoryDetails(bundle)
         }
     })
 
