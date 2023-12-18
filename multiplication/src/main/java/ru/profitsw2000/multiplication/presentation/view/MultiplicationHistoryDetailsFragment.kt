@@ -107,12 +107,19 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
         val secondMultiplicatorList = multiplicationHistoryModel.secondMultiplicatorList
         val userMultiplicationResultsList = multiplicationHistoryModel.userMultiplicationResults
         val multiplicationResultsList = multiplicationHistoryModel.multiplicationResults
+        val multiplicationTasksTimeList = multiplicationHistoryModel.tasksTime
         val constraintLayout = examplesLinearLayout
 
         firstMultiplicatorList.forEachIndexed { index, element ->
             val exampleTextView = TextView(context)
 
-            exampleTextView.text = "${index + 1})   $element * ${secondMultiplicatorList[index]} = ${userMultiplicationResultsList[index]}"
+            exampleTextView.text = getString(R.string.example_item_text,
+                (index + 1).toString(),
+                element.toString(),
+                secondMultiplicatorList[index].toString(),
+                userMultiplicationResultsList[index].toString(),
+                "%.2f".format(multiplicationTasksTimeList[index]))
+                //"${index + 1})   $element * ${secondMultiplicatorList[index]} = ${userMultiplicationResultsList[index]}"
             exampleTextView.setTextColor(getTextColorFromResult(
                 userMultiplicationResultsList[index],
                 multiplicationResultsList[index])
@@ -129,6 +136,11 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
     private fun getTextColorFromResult(userMultiplicationResult: Int, multiplicationResult: Int): Int {
         return if (userMultiplicationResult == multiplicationResult) ContextCompat.getColor(requireContext(), ru.profitsw2000.core.R.color.green)
         else ContextCompat.getColor(requireContext(), ru.profitsw2000.core.R.color.red)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object{

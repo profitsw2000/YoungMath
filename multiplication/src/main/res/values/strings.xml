@@ -13,4 +13,5 @@
     <string name="test_execution_date_text">Дата: %1$s</string>
     <string name="test_skipped_text">Прерван</string>
     <string name="examples_list_title">Задания:</string>
+    <string name="example_item_text">%1$s)   %2$s * %3$s = %4$s (%5$s сек.)</string>
 </resources>
