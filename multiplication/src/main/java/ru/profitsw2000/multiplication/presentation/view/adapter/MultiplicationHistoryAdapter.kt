@@ -1,6 +1,7 @@
 package ru.profitsw2000.multiplication.presentation.view.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -59,6 +60,7 @@ class MultiplicationHistoryAdapter(
             cardView.strokeColor = ContextCompat.getColor(context,
                 getViewTextColorFromAssessment(context, data[position].assessment))
         }
+        Log.d("VVV", "onBindViewHolder, position: $position")
     }
 
     private fun getViewTextColorFromAssessment(context: Context, assessment: Int): Int {

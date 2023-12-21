@@ -119,7 +119,6 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
                 secondMultiplicatorList[index].toString(),
                 userMultiplicationResultsList[index].toString(),
                 "%.2f".format(multiplicationTasksTimeList[index]))
-                //"${index + 1})   $element * ${secondMultiplicatorList[index]} = ${userMultiplicationResultsList[index]}"
             exampleTextView.setTextColor(getTextColorFromResult(
                 userMultiplicationResultsList[index],
                 multiplicationResultsList[index])

@@ -51,7 +51,7 @@ class MultiplicationHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observeData()
-        multiplicationViewModel.getMultiplicationTestResultsList()
+        //multiplicationViewModel.getMultiplicationTestResultsList()
     }
 
     private fun initViews() = with(binding) {
