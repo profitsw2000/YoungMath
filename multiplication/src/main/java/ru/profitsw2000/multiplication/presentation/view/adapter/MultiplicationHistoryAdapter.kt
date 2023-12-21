@@ -11,10 +11,11 @@ import ru.profitsw2000.data.model.MathCategoryModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import ru.profitsw2000.multiplication.R
 import ru.profitsw2000.multiplication.databinding.HistoryListItemViewBinding
+import ru.profitsw2000.multiplication.presentation.utils.OnHistoryListEventsListener
 import java.text.SimpleDateFormat
 
 class MultiplicationHistoryAdapter(
-    private val onMathCategoryClickListener: OnMathCategoryClickListener
+    private val onHistoryListEventsListener: OnHistoryListEventsListener
 ) : RecyclerView.Adapter<MultiplicationHistoryAdapter.ViewHolder>() {
 
     private var data: List<MultiplicationHistoryModel> = arrayListOf()
@@ -29,7 +30,7 @@ class MultiplicationHistoryAdapter(
         val multiplicationHistoryViewHolder = ViewHolder(binding)
 
         binding.historyListItemViewRootLayout.setOnClickListener {
-            onMathCategoryClickListener.onItemClick(data[multiplicationHistoryViewHolder.layoutPosition].id)
+            onHistoryListEventsListener.onItemClick(data[multiplicationHistoryViewHolder.layoutPosition])
         }
 
         return multiplicationHistoryViewHolder
@@ -61,6 +62,7 @@ class MultiplicationHistoryAdapter(
                 getViewTextColorFromAssessment(context, data[position].assessment))
         }
         Log.d("VVV", "onBindViewHolder, position: $position")
+        onHistoryListEventsListener.onPositionChanged(position)
     }
 
     private fun getViewTextColorFromAssessment(context: Context, assessment: Int): Int {

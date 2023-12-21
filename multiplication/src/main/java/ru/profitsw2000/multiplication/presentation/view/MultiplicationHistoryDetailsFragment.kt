@@ -25,7 +25,7 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
     private var _binding: FragmentMultiplicationHistoryDetailsBinding? = null
     private val binding get() = _binding!!
     private val multiplicationViewModel: MultiplicationViewModel by viewModel()
-    private val testId: Int? by lazy { arguments?.getInt(TEST_ID, 0) }
+    private val multiplicationHistoryModel: MultiplicationHistoryModel? by lazy { arguments?.getParcelable(TEST_ID) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,51 +38,12 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
-        observeData()
-        testId?.let {
-            multiplicationViewModel.getMultiplicationTestResultsListById(it)
+        multiplicationHistoryModel?.let {
+            initViews(it)
         }
     }
 
-    private fun initViews() {
-
-    }
-
-    private fun observeData() {
-        val observer = Observer<MultiplicationHistoryState>() { renderData(it) }
-        multiplicationViewModel.multiplicationHistoryLiveData.observe(viewLifecycleOwner, observer)
-    }
-
-    private fun renderData(multiplicationHistoryState: MultiplicationHistoryState) {
-        when(multiplicationHistoryState) {
-            is MultiplicationHistoryState.Error -> handleError(multiplicationHistoryState.message)
-            MultiplicationHistoryState.Loading -> setProgressBarVisible(true)
-            is MultiplicationHistoryState.Success -> handleSuccess(multiplicationHistoryState.multiplicationHistoryModelList[0])
-        }
-    }
-
-    private fun handleError(message: String) = with(binding) {
-        setProgressBarVisible(false)
-        Snackbar.make(this.multiplicationHistoryDetailsFragmentRootLayout, message, Snackbar.LENGTH_INDEFINITE)
-            .setAction(getString(ru.profitsw2000.core.R.string.snackbar_reload_text)) {
-                multiplicationViewModel.getMultiplicationTestResultsList()
-            }
-            .show()
-    }
-
-    private fun setProgressBarVisible(visible: Boolean) = with(binding) {
-        if (visible) {
-            progressBar.visibility = View.VISIBLE
-            mainGroup.visibility = View.GONE
-        } else {
-            progressBar.visibility = View.GONE
-            mainGroup.visibility = View.VISIBLE
-        }
-    }
-
-    private fun handleSuccess(multiplicationHistoryModel: MultiplicationHistoryModel) {
-        setProgressBarVisible(false)
+    private fun initViews(multiplicationHistoryModel: MultiplicationHistoryModel) {
         populateViews(multiplicationHistoryModel)
         addExamples(multiplicationHistoryModel)
     }

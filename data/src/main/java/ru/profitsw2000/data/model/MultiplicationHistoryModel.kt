@@ -1,8 +1,10 @@
 package ru.profitsw2000.data.model
 
-import android.drm.DrmRights
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
+@Parcelize
 data class MultiplicationHistoryModel(
     val id: Int,
     val testDate: Date,
@@ -18,4 +20,4 @@ data class MultiplicationHistoryModel(
     val testTime: Float,
     val results: List<Boolean>,
     val isInterrupted: Boolean
-)
+): Parcelable

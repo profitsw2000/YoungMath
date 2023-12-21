@@ -4,7 +4,7 @@ import ru.profitsw2000.data.model.MultiplicationHistoryModel
 
 interface OnHistoryListEventsListener {
 
-    fun onClick(multiplicationHistoryModel: MultiplicationHistoryModel)
+    fun onItemClick(multiplicationHistoryModel: MultiplicationHistoryModel)
 
     fun onPositionChanged(position: Int)
 }

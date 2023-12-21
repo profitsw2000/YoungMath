@@ -16,6 +16,7 @@ import ru.profitsw2000.data.model.state.MultiplicationHistoryState
 import ru.profitsw2000.multiplication.R
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationBinding
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationHistoryBinding
+import ru.profitsw2000.multiplication.presentation.utils.OnHistoryListEventsListener
 import ru.profitsw2000.multiplication.presentation.view.MultiplicationHistoryDetailsFragment.Companion.TEST_ID
 import ru.profitsw2000.multiplication.presentation.view.adapter.MultiplicationHistoryAdapter
 import ru.profitsw2000.multiplication.presentation.viewmodel.MultiplicationViewModel
@@ -28,13 +29,18 @@ class MultiplicationHistoryFragment : Fragment() {
     private val binding get() = _binding!!
     private val multiplicationViewModel: MultiplicationViewModel by viewModel()
     private val navigator: Navigator by inject()
-    private val adapter = MultiplicationHistoryAdapter(object : OnMathCategoryClickListener{
-        override fun onItemClick(categoryId: Int) {
+    private val adapter = MultiplicationHistoryAdapter(object : OnHistoryListEventsListener{
+
+        override fun onItemClick(multiplicationHistoryModel: MultiplicationHistoryModel) {
             val bundle = Bundle().apply {
-                putInt(TEST_ID, categoryId)
+                putParcelable(TEST_ID, multiplicationHistoryModel)
             }
             this@MultiplicationHistoryFragment.arguments = bundle
             navigator.navigateToMultiplicationHistoryDetails(bundle)
+        }
+
+        override fun onPositionChanged(position: Int) {
+
         }
     })
 
@@ -51,7 +57,6 @@ class MultiplicationHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observeData()
-        //multiplicationViewModel.getMultiplicationTestResultsList()
     }
 
     private fun initViews() = with(binding) {
