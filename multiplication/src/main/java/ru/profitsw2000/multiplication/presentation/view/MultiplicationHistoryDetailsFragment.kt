@@ -24,7 +24,6 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
 
     private var _binding: FragmentMultiplicationHistoryDetailsBinding? = null
     private val binding get() = _binding!!
-    private val multiplicationViewModel: MultiplicationViewModel by viewModel()
     private val multiplicationHistoryModel: MultiplicationHistoryModel? by lazy { arguments?.getParcelable(TEST_ID) }
 
     override fun onCreateView(

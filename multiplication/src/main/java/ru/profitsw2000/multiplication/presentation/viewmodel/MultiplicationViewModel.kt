@@ -1,5 +1,6 @@
 package ru.profitsw2000.multiplication.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -16,6 +17,8 @@ class MultiplicationViewModel (
     private val multiplicationRepository: MultiplicationRepository,
     private val multiplicationHistoryMapper: MultiplicationHistoryMapper
 ) : CoreViewModel() {
+
+    private var currentMultiplicationHistoryListBindPosition = 0
 
     val multiplicationTestLiveData: LiveData<MultiplicationDataModel> = multiplicationRepository.multiplicationTestDataGenerator.testsDataSource.asLiveData()
     val multiplicationHistoryResultsLiveData: LiveData<MultiplicationHistoryModel> = multiplicationRepository.multiplicationTestDataGenerator.multiplicationHistoryDataSource.asLiveData()
@@ -84,6 +87,11 @@ class MultiplicationViewModel (
                     _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
                 }
             )
+    }
+
+    fun updateCurrentMultiplicationHistoryListPosition(position: Int) {
+        currentMultiplicationHistoryListBindPosition = position
+        Log.d("VVV", "updateCurrentMultiplicationHistoryListPosition: $currentMultiplicationHistoryListBindPosition")
     }
 
 }
