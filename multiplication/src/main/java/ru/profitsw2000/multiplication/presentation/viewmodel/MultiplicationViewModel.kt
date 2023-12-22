@@ -18,6 +18,11 @@ class MultiplicationViewModel (
     private val multiplicationHistoryMapper: MultiplicationHistoryMapper
 ) : CoreViewModel() {
 
+    private val startPosition = 0
+    private val loadSize = 10
+    private val startPageSize = 30
+    private val currentMax = startPageSize
+    private var loadInProgress = false
     private var currentMultiplicationHistoryListBindPosition = 0
 
     val multiplicationTestLiveData: LiveData<MultiplicationDataModel> = multiplicationRepository.multiplicationTestDataGenerator.testsDataSource.asLiveData()
@@ -91,7 +96,20 @@ class MultiplicationViewModel (
 
     fun updateCurrentMultiplicationHistoryListPosition(position: Int) {
         currentMultiplicationHistoryListBindPosition = position
+        if (currentMax - currentMultiplicationHistoryListBindPosition < loadSize &&
+            !loadInProgress) {
+            loadInProgress = !loadInProgress
+            loadNextPage()
+        }
         Log.d("VVV", "updateCurrentMultiplicationHistoryListPosition: $currentMultiplicationHistoryListBindPosition")
+    }
+
+    private fun loadFirstPage() {
+
+    }
+
+    private fun loadNextPage() {
+
     }
 
 }
