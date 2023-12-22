@@ -27,4 +27,11 @@ class MultiplicationRepositoryImpl(
     override fun getMultiplicationTestResultById(testId: Int): Single<MultiplicationHistoryEntity> {
         return database.multiplicationDao.getMultiplicationTestById(testId)
     }
+
+    override fun getMultiplicationHistoryPageList(
+        loadSize: Int,
+        offset: Int
+    ): Single<List<MultiplicationHistoryEntity>> {
+        return database.multiplicationDao.getMultiplicationHistoryPageList(loadSize, offset)
+    }
 }

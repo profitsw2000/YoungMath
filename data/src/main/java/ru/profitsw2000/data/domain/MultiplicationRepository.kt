@@ -6,6 +6,7 @@ import ru.profitsw2000.data.data.MultiplicationTestDataGenerator
 import ru.profitsw2000.data.room.entity.MultiplicationHistoryEntity
 
 interface MultiplicationRepository {
+
     val multiplicationTestDataGenerator: MultiplicationTestDataGenerator
 
     fun writeMultiplicationTestResult(multiplicationHistoryEntity: MultiplicationHistoryEntity): Completable
@@ -13,5 +14,7 @@ interface MultiplicationRepository {
     fun getMultiplicationTestResultsList(): Single<List<MultiplicationHistoryEntity>>
 
     fun getMultiplicationTestResultById(testId: Int): Single<MultiplicationHistoryEntity>
+
+    fun getMultiplicationHistoryPageList(loadSize: Int, offset: Int): Single<List<MultiplicationHistoryEntity>>
 
 }
