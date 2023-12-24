@@ -72,13 +72,9 @@ class TestMultiplicationFragment : Fragment() {
             taskNumber = it.taskNumber
 
             if (!it.isTestOn) {
-                observeHistoryResults()
-                skipTestButton.isEnabled = false
-                sendAnswerImageView.isEnabled = false
                 navigator.navigateToMultiplicationTestResult()
             }
         }
-
     }
 
     private fun observeHistoryResults() {

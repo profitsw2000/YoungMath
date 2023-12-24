@@ -37,7 +37,7 @@ class TestResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        observeTestHistoryData()
+        observeTestHistoryData(savedInstanceState != null)
         observeHistoryDbData()
     }
 
@@ -47,10 +47,10 @@ class TestResultFragment : Fragment() {
         }
     }
 
-    private fun observeTestHistoryData() {
+    private fun observeTestHistoryData(isRecreated: Boolean) {
         multiplicationViewModel.multiplicationHistoryResultsLiveData.observe(viewLifecycleOwner) {
             showResult(it)
-            //multiplicationViewModel.writeMultiplicationTestResult(it)
+            if (!isRecreated) multiplicationViewModel.writeMultiplicationTestResult(it)
         }
     }
 
