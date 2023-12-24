@@ -39,16 +39,12 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     private val taskResult get() = firstMultiplier*secondMultiplier
     private var userResult = 0
     private var isStarted = false
-    private var resultsArray = Array(tasksNumber) {false}
 
     private var job: Job? = null
     private val mutableTestsDataSource: MutableStateFlow<MultiplicationDataModel> = MutableStateFlow(
         MultiplicationDataModel(currentTaskTime, currentTaskNumber, firstMultiplier, secondMultiplier, isStarted)
     )
     val testsDataSource: StateFlow<MultiplicationDataModel> = mutableTestsDataSource
-
-    private val mutableResultsDataSource: MutableStateFlow<Array<Boolean>> = MutableStateFlow(resultsArray)
-    val resultsDataSource: StateFlow<Array<Boolean>> = mutableResultsDataSource
 
     private val mutableMultiplicationHistoryDataSource: MutableStateFlow<MultiplicationHistoryModel> = MutableStateFlow(
         MultiplicationHistoryModel(id = 0,
@@ -67,12 +63,11 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
             isInterrupted = isInterrupted
         )
     )
-    val multiplicationHistoryDataSource: StateFlow<MultiplicationHistoryModel> = mutableMultiplicationHistoryDataSource
+    val multiplicationHistoryDataSource: StateFlow<MultiplicationHistoryModel> by this::mutableMultiplicationHistoryDataSource
 
     fun startTest() {
         if (!isStarted) {
             isStarted = true
-            resultsArray.fill(false)
             generateTaskData()
             initDbVariables()
 
@@ -94,11 +89,11 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
 
     fun skipTest() {
         isInterrupted = true
+        updateDbVariables(0)
         stopTest()
     }
 
     fun nextTask(result: Int) {
-        resultsArray[currentTaskNumber - 1] = (result == taskResult)
         userResult = result
         updateDbVariables(result)
         if (isLastTest()) {
@@ -130,7 +125,6 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     }
 
     private fun stopTest() {
-        mutableResultsDataSource.value = resultsArray
         writeDbVariables()
         stopJob()
         clearTestData()

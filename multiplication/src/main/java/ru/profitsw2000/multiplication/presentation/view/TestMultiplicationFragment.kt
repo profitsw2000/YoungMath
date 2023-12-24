@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.OnBackPressedCallback
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.profitsw2000.multiplication.R
@@ -21,6 +22,16 @@ class TestMultiplicationFragment : Fragment() {
     private val multiplicationViewModel: MultiplicationViewModel by viewModel()
     private val navigator: Navigator by inject()
     private var taskNumber = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,8 +71,22 @@ class TestMultiplicationFragment : Fragment() {
             if (it.taskNumber != taskNumber) this.multiplicationResultEditText.text?.clear()
             taskNumber = it.taskNumber
 
-            if (!it.isTestOn) navigator.navigateToMultiplicationTestResult()
+            if (!it.isTestOn) {
+                observeHistoryResults()
+                skipTestButton.isEnabled = false
+                sendAnswerImageView.isEnabled = false
+                navigator.navigateToMultiplicationTestResult()
+            }
         }
+
+    }
+
+    private fun observeHistoryResults() {
+
+        multiplicationViewModel.multiplicationHistoryResultsLiveData.observe(viewLifecycleOwner) {
+            multiplicationViewModel.writeMultiplicationTestResult(it)
+        }
+
     }
 
     private fun formatTime(timeWithMillis: Float): String {
