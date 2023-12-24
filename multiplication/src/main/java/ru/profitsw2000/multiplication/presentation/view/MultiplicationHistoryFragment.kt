@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DiffUtil
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,6 +18,7 @@ import ru.profitsw2000.data.model.state.MultiplicationHistoryState
 import ru.profitsw2000.multiplication.R
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationBinding
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationHistoryBinding
+import ru.profitsw2000.multiplication.presentation.utils.MultiplicationHistoryDiffUtilCallback
 import ru.profitsw2000.multiplication.presentation.utils.OnHistoryListEventsListener
 import ru.profitsw2000.multiplication.presentation.view.MultiplicationHistoryDetailsFragment.Companion.TEST_ID
 import ru.profitsw2000.multiplication.presentation.view.adapter.MultiplicationHistoryAdapter
@@ -65,7 +67,7 @@ class MultiplicationHistoryFragment : Fragment() {
     }
 
     private fun observeData() {
-        val observer = Observer<MultiplicationHistoryState>() { renderData(it) }
+        val observer = Observer<MultiplicationHistoryState> { renderData(it) }
         multiplicationViewModel.multiplicationHistoryLiveData.observe(viewLifecycleOwner, observer)
     }
 
@@ -80,7 +82,7 @@ class MultiplicationHistoryFragment : Fragment() {
     private fun handleError(message: String) = with(binding) {
         Snackbar.make(this.historyFragmentRootLayout, message, Snackbar.LENGTH_INDEFINITE)
             .setAction(getString(ru.profitsw2000.core.R.string.snackbar_reload_text)) {
-                multiplicationViewModel.getMultiplicationTestResultsList()
+                //multiplicationViewModel.getMultiplicationTestResultsList()
             }
             .show()
     }
@@ -97,7 +99,12 @@ class MultiplicationHistoryFragment : Fragment() {
 
     private fun handleSuccess(multiplicationHistoryModelList: List<MultiplicationHistoryModel>) {
         setProgressBarVisible(false)
+        val multiplicationHistoryDiffUtilCallback = MultiplicationHistoryDiffUtilCallback(adapter.data, multiplicationHistoryModelList)
+        val productDiffResult = DiffUtil.calculateDiff(multiplicationHistoryDiffUtilCallback)
+
         adapter.setData(multiplicationHistoryModelList)
+        productDiffResult.dispatchUpdatesTo(adapter)
+
     }
 
 }

@@ -20,8 +20,8 @@ class MultiplicationViewModel (
 
     private val startPosition = 0
     private val loadSize = 10
-    private val startPageSize = 30
-    private val currentMax = startPageSize
+    private val startPageSize = 40
+    private var currentMax = startPageSize
     private var loadInProgress = false
     private var currentMultiplicationHistoryListBindPosition = 0
     private val multiplicationHistoryModelList = mutableListOf<MultiplicationHistoryModel>()
@@ -99,20 +99,48 @@ class MultiplicationViewModel (
         currentMultiplicationHistoryListBindPosition = position
         if (currentMax - currentMultiplicationHistoryListBindPosition < loadSize &&
             !loadInProgress) {
-            loadInProgress = !loadInProgress
+            loadInProgress = true
             loadNextPage()
         }
-        Log.d("VVV", "updateCurrentMultiplicationHistoryListPosition: $currentMultiplicationHistoryListBindPosition")
     }
 
     fun loadFirstPage() {
-        if (multiplicationHistoryModelList.size > 0) {
-            //load start page items
+        if (multiplicationHistoryModelList.size == 0) {
+            _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+            multiplicationRepository.getMultiplicationHistoryPageList(startPageSize, startPosition)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        multiplicationHistoryModelList.addAll(multiplicationHistoryMapper.map(it))
+                        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
+                    },
+                    {
+                        val message = it.message ?: ""
+                        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                    }
+                )
         }
     }
 
-    private fun loadNextPage() {
-
+    fun loadNextPage() {
+        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+        multiplicationRepository.getMultiplicationHistoryPageList(loadSize, currentMax)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    multiplicationHistoryModelList.addAll(multiplicationHistoryMapper.map(it))
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
+                    currentMax += loadSize
+                    loadInProgress = false
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                    loadInProgress = false
+                }
+            )
     }
 
 }

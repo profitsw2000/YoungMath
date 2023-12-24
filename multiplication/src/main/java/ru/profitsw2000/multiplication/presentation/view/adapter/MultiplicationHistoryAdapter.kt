@@ -18,12 +18,15 @@ class MultiplicationHistoryAdapter(
     private val onHistoryListEventsListener: OnHistoryListEventsListener
 ) : RecyclerView.Adapter<MultiplicationHistoryAdapter.ViewHolder>() {
 
-    private var data: List<MultiplicationHistoryModel> = arrayListOf()
+    var data: List<MultiplicationHistoryModel> = arrayListOf()
+        private set
 
     fun setData(data: List<MultiplicationHistoryModel>){
         this.data = data
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = HistoryListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)

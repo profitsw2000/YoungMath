@@ -6,7 +6,7 @@ import ru.profitsw2000.data.model.MultiplicationHistoryModel
 class MultiplicationHistoryDiffUtilCallback(
     private val oldList: List<MultiplicationHistoryModel>,
     private val newList: List<MultiplicationHistoryModel>
-): DiffUtil.Callback() {
+) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int {
         return oldList.size
