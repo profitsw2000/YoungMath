@@ -21,6 +21,9 @@ interface MultiplicationDao {
 
     @Query("SELECT * FROM MultiplicationHistoryEntity LIMIT :loadSize OFFSET :offset")
     fun getMultiplicationHistoryPageList(loadSize: Int, offset: Int): Single<List<MultiplicationHistoryEntity>>
+    
+    @Query("SELECT COUNT(*) FROM MultiplicationHistoryEntity")
+    fun getMultiplicationHistoryListSize(): Single<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(multiplicationHistoryEntity: MultiplicationHistoryEntity): Completable

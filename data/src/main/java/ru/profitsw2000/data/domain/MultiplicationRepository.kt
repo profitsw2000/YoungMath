@@ -9,6 +9,8 @@ interface MultiplicationRepository {
 
     val multiplicationTestDataGenerator: MultiplicationTestDataGenerator
 
+    fun getMultiplicationHistoryListSize(): Single<Int>
+
     fun writeMultiplicationTestResult(multiplicationHistoryEntity: MultiplicationHistoryEntity): Completable
 
     fun getMultiplicationTestResultsList(): Single<List<MultiplicationHistoryEntity>>

@@ -16,6 +16,10 @@ class MultiplicationRepositoryImpl(
 
     override val multiplicationTestDataGenerator: MultiplicationTestDataGenerator = MultiplicationTestDataGenerator(coroutineScope)
 
+    override fun getMultiplicationHistoryListSize(): Single<Int> {
+        return database.multiplicationDao.getMultiplicationHistoryListSize()
+    }
+
     override fun writeMultiplicationTestResult(multiplicationHistoryEntity: MultiplicationHistoryEntity): Completable {
         return database.multiplicationDao.insert(multiplicationHistoryEntity)
     }
