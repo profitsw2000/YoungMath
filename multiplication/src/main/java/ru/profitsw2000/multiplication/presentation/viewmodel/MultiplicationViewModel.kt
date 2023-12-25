@@ -24,6 +24,7 @@ class MultiplicationViewModel (
     private var currentMax = startPageSize
     private var loadInProgress = false
     private var currentMultiplicationHistoryListBindPosition = 0
+    private var historyTableSize = 0
     private val multiplicationHistoryModelList = mutableListOf<MultiplicationHistoryModel>()
 
     val multiplicationTestLiveData: LiveData<MultiplicationDataModel> = multiplicationRepository.multiplicationTestDataGenerator.testsDataSource.asLiveData()
@@ -98,7 +99,8 @@ class MultiplicationViewModel (
     fun updateCurrentMultiplicationHistoryListPosition(position: Int) {
         currentMultiplicationHistoryListBindPosition = position
         if (currentMax - currentMultiplicationHistoryListBindPosition < loadSize &&
-            !loadInProgress) {
+            !loadInProgress &&
+            historyTableSize > multiplicationHistoryModelList.size) {
             loadInProgress = true
             loadNextPage()
         }
@@ -120,6 +122,10 @@ class MultiplicationViewModel (
                         _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
                     }
                 )
+        } else {
+            _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+            getMultiplicationHistoryList()
+            loadInProgress = true
         }
     }
 
@@ -133,6 +139,47 @@ class MultiplicationViewModel (
                     multiplicationHistoryModelList.addAll(multiplicationHistoryMapper.map(it))
                     _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
                     currentMax += loadSize
+                    loadInProgress = false
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                    loadInProgress = false
+                }
+            )
+    }
+
+    private fun getMultiplicationHistoryList() {
+        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+        multiplicationRepository.getMultiplicationHistoryListSize()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    historyTableSize = it
+                    if (it == multiplicationHistoryModelList.size) {
+                        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
+                    } else {
+                        getNewElements((it - multiplicationHistoryModelList.size), 0)
+                    }
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                    loadInProgress = false
+                }
+            )
+    }
+
+    private fun getNewElements(elementsNumber: Int, offset: Int) {
+        multiplicationRepository.getMultiplicationHistoryPageList(elementsNumber, offset)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    multiplicationHistoryModelList.addAll(0, multiplicationHistoryMapper.map(it))
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
+                    currentMax += elementsNumber
                     loadInProgress = false
                 },
                 {
