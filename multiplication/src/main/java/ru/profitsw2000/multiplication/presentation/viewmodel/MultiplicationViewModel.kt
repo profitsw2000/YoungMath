@@ -99,8 +99,7 @@ class MultiplicationViewModel (
     fun updateCurrentMultiplicationHistoryListPosition(position: Int) {
         currentMultiplicationHistoryListBindPosition = position
         if (currentMax - currentMultiplicationHistoryListBindPosition < loadSize &&
-            !loadInProgress &&
-            historyTableSize > multiplicationHistoryModelList.size) {
+            !loadInProgress) {
             loadInProgress = true
             loadNextPage()
         }
@@ -116,6 +115,7 @@ class MultiplicationViewModel (
                     {
                         multiplicationHistoryModelList.addAll(multiplicationHistoryMapper.map(it))
                         _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
+                        historyTableSize = multiplicationHistoryModelList.size + 1
                     },
                     {
                         val message = it.message ?: ""
@@ -179,7 +179,6 @@ class MultiplicationViewModel (
                 {
                     multiplicationHistoryModelList.addAll(0, multiplicationHistoryMapper.map(it))
                     _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
-                    currentMax += elementsNumber
                     loadInProgress = false
                 },
                 {
@@ -190,4 +189,60 @@ class MultiplicationViewModel (
             )
     }
 
+    fun loadMultiplicationHistoryList() {
+        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+        loadInProgress = true
+        multiplicationRepository.getMultiplicationHistoryListSize()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    checkMultiplicationHistoryTableIsEmpty(it)
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                    loadInProgress = false
+                }
+            )
+    }
+
+    private fun checkMultiplicationHistoryTableIsEmpty(tableSize: Int) {
+        if (tableSize > 0) compareTableAndListSize(tableSize)
+    }
+
+    private fun compareTableAndListSize(tableSize: Int) {
+        if (tableSize != multiplicationHistoryModelList.size) compareWithPreviousTableSize(tableSize)
+    }
+
+    private fun compareWithPreviousTableSize(tableSize: Int) {
+        if (tableSize > historyTableSize) checkPreviousTableSize(tableSize)
+    }
+
+    private fun checkPreviousTableSize(tableSize: Int) {
+        if (historyTableSize == 0) {
+            loadStartPage()
+        } else {
+            getNewElements(tableSize - historyTableSize, 0)
+            currentMax += tableSize - historyTableSize
+        }
+        historyTableSize = tableSize
+    }
+
+    private fun loadStartPage() {
+        multiplicationRepository.getMultiplicationHistoryPageList(startPageSize, startPosition)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    multiplicationHistoryModelList.addAll(multiplicationHistoryMapper.map(it))
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(multiplicationHistoryModelList)
+                    currentMax = multiplicationHistoryModelList.size
+                },
+                {
+                    val message = it.message ?: ""
+                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                }
+            )
+    }
 }
