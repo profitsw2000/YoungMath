@@ -100,7 +100,6 @@ class MultiplicationViewModel (
         currentMultiplicationHistoryListBindPosition = position
         if (currentMax - currentMultiplicationHistoryListBindPosition < loadSize &&
             !loadInProgress) {
-            loadInProgress = true
             loadNextPage()
         }
     }
@@ -131,6 +130,7 @@ class MultiplicationViewModel (
 
     fun loadNextPage() {
         _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+        loadInProgress = true
         multiplicationRepository.getMultiplicationHistoryPageList(loadSize, currentMax)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
