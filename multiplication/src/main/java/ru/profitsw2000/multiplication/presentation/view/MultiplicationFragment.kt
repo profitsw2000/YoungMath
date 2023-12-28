@@ -49,7 +49,7 @@ class MultiplicationFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.history -> {
-                multiplicationViewModel.loadFirstPage()
+                multiplicationViewModel.loadMultiplicationHistoryList()
                 navigator.navigateToMultiplicationHistory()
                 true
             }
