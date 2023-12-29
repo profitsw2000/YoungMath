@@ -28,6 +28,8 @@ class MultiplicationViewModel (
     private var historyTableSize = 0
     private val multiplicationHistoryModelList = mutableListOf<MultiplicationHistoryModel>()
 
+    private var isTestAddedToDataBase = false
+
     val multiplicationTestLiveData: LiveData<MultiplicationDataModel> = multiplicationRepository.multiplicationTestDataGenerator.testsDataSource.asLiveData()
     val multiplicationHistoryResultsLiveData: LiveData<MultiplicationHistoryModel> = multiplicationRepository.multiplicationTestDataGenerator.multiplicationHistoryDataSource.asLiveData()
 
@@ -36,6 +38,7 @@ class MultiplicationViewModel (
 
     fun startTest() {
         multiplicationRepository.multiplicationTestDataGenerator.startTest()
+        isTestAddedToDataBase = false
     }
 
     fun skipTest() {
@@ -47,27 +50,30 @@ class MultiplicationViewModel (
     }
 
     fun writeMultiplicationTestResult(multiplicationHistoryModel: MultiplicationHistoryModel) {
-        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
-        multiplicationRepository.writeMultiplicationTestResult(multiplicationHistoryMapper.map(multiplicationHistoryModel))
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(
-                        arrayListOf()
-                    )
-                },{
-                    val message = it.message ?: ""
-                    _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
-                }
-            )
+        if (!isTestAddedToDataBase) {
+            _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
+            multiplicationRepository.writeMultiplicationTestResult(multiplicationHistoryMapper.map(multiplicationHistoryModel))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Success(
+                            arrayListOf()
+                        )
+                        isTestAddedToDataBase = true
+                    },{
+                        val message = it.message ?: ""
+                        _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)
+                    }
+                )
+        }
     }
 
     fun updateCurrentMultiplicationHistoryListPosition(position: Int) {
         currentMultiplicationHistoryListBindPosition = position
         if (currentMax - currentMultiplicationHistoryListBindPosition < loadSize &&
             !loadInProgress &&
-            historyTableSize == multiplicationHistoryModelList.size) {
+            historyTableSize != multiplicationHistoryModelList.size) {
             loadNextPage()
         }
     }

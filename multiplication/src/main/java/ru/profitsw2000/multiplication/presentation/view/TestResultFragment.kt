@@ -1,6 +1,8 @@
 package ru.profitsw2000.multiplication.presentation.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +22,12 @@ import youngmath.navigator.Navigator
 
 class TestResultFragment : Fragment() {
 
+    private val TAG = "VVV"
     private var _binding: FragmentTestResultBinding? = null
     private val binding get() = _binding!!
     private val multiplicationViewModel: MultiplicationViewModel by viewModel()
     private val navigator: Navigator by inject()
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +40,7 @@ class TestResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        observeTestHistoryData(savedInstanceState != null)
+        observeTestHistoryData()
         observeHistoryDbData()
     }
 
@@ -47,15 +50,15 @@ class TestResultFragment : Fragment() {
         }
     }
 
-    private fun observeTestHistoryData(isRecreated: Boolean) {
+    private fun observeTestHistoryData() {
         multiplicationViewModel.multiplicationHistoryResultsLiveData.observe(viewLifecycleOwner) {
             showResult(it)
-            if (!isRecreated) multiplicationViewModel.writeMultiplicationTestResult(it)
+            multiplicationViewModel.writeMultiplicationTestResult(it)
         }
     }
 
     private fun observeHistoryDbData() {
-        val observer = Observer<MultiplicationHistoryState>() { renderData(it) }
+        val observer = Observer<MultiplicationHistoryState> { renderData(it) }
         multiplicationViewModel.multiplicationHistoryLiveData.observe(viewLifecycleOwner, observer)
     }
 
@@ -99,7 +102,6 @@ class TestResultFragment : Fragment() {
     private fun handleError(message: String) = with(binding) {
         setProgressBarVisible(false)
         Toast.makeText(context,
-            //ru.profitsw2000.core.R.string.test_result_write_to_db_error,
             message,
             Toast.LENGTH_SHORT).show()
     }
