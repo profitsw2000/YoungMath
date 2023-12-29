@@ -6,6 +6,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import ru.profitsw2000.mainfragment.di.mainModule
 import ru.profitsw2000.multiplication.di.multiplicationModule
+import ru.profitsw2000.youngmath.di.appModule
 
 class App : Application() {
 
@@ -15,6 +16,7 @@ class App : Application() {
             androidLogger()
             androidContext(this@App)
             modules(
+                appModule,
                 mainModule,
                 multiplicationModule
             )

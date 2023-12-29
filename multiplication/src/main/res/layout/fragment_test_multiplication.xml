@@ -134,5 +134,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/skip_test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test_task_constraint_layout"
+        android:backgroundTint="@color/red"
+        android:text="@string/skip_test_button_text"
+        android:layout_marginTop="@dimen/large_space_between_views"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

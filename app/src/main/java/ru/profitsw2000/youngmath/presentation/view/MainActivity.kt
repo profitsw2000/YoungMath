@@ -2,6 +2,7 @@ package ru.profitsw2000.youngmath.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import org.koin.core.context.loadKoinModules
@@ -28,5 +29,15 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
         loadKoinModules(module { single<Navigator> { NavigatorImpl(navController) } })
+
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(false)
+
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            when(destination.id) {
+                R.id.multiplicationFragment -> actionBar?.show()
+                else -> actionBar?.hide()
+            }
+        }
     }
 }
