@@ -1,9 +1,7 @@
 package ru.profitsw2000.multiplication.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.asLiveData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -18,6 +16,8 @@ class MultiplicationViewModel (
     private val multiplicationRepository: MultiplicationRepository,
     private val multiplicationHistoryMapper: MultiplicationHistoryMapper
 ) : CoreViewModel() {
+
+    var currentMultiplicationHistoryListVisiblePosition = 0
 
     private val startPosition = 0
     private val loadSize = 10
@@ -61,6 +61,7 @@ class MultiplicationViewModel (
                             arrayListOf()
                         )
                         isTestAddedToDataBase = true
+                        currentMultiplicationHistoryListVisiblePosition++
                     },{
                         val message = it.message ?: ""
                         _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Error(message)

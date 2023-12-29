@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -64,6 +66,12 @@ class MultiplicationHistoryFragment : Fragment() {
 
     private fun initViews() = with(binding) {
         multiplicationHistoryListRecyclerView.adapter = adapter
+        multiplicationHistoryListRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                multiplicationViewModel.currentMultiplicationHistoryListVisiblePosition = (multiplicationHistoryListRecyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+            }
+        })
     }
 
     private fun observeData() {
@@ -80,9 +88,10 @@ class MultiplicationHistoryFragment : Fragment() {
     }
 
     private fun handleError(message: String) = with(binding) {
+        setProgressBarVisible(false)
         Snackbar.make(this.historyFragmentRootLayout, message, Snackbar.LENGTH_INDEFINITE)
             .setAction(getString(ru.profitsw2000.core.R.string.snackbar_reload_text)) {
-                //multiplicationViewModel.getMultiplicationTestResultsList()
+                multiplicationViewModel.loadMultiplicationHistoryList()
             }
             .show()
     }
@@ -104,7 +113,7 @@ class MultiplicationHistoryFragment : Fragment() {
 
         adapter.setData(multiplicationHistoryModelList)
         productDiffResult.dispatchUpdatesTo(adapter)
-
+        binding.multiplicationHistoryListRecyclerView.scrollToPosition(multiplicationViewModel.currentMultiplicationHistoryListVisiblePosition)
     }
 
 }
