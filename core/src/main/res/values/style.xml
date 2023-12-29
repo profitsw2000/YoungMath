@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text styles. -->
+    <style name="screen_title_text_style">
+        <item name="android:textSize">@dimen/test_screen_title_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="small_screen_title_text_style">
+        <item name="android:textSize">@dimen/small_test_screen_title_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="screen_sub_title_text_style">
+        <item name="android:textSize">@dimen/result_sub_title_text_size</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style_green">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style_red">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="screen_small_sub_title_text_style_red_bold">
+        <item name="android:textSize">@dimen/result_small_sub_title_text_size</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="screen_extra_small_sub_title_text_style">
+        <item name="android:textSize">@dimen/result_extra_small_sub_title_text_size</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="right_answers_number_text_style">
+        <item name="android:textSize">@dimen/result_sub_title_text_size</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="wrong_answers_number_text_style">
+        <item name="android:textSize">@dimen/result_sub_title_text_size</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="screen_details_text_style">
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="test_timer_text_style">
+        <item name="android:textSize">@dimen/test_timer_text_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="test_task_text_style">
+        <item name="android:textSize">@dimen/test_task_text_size</item>
+    </style>
+
+    <style name="history_list_item_test_type_text_style">
+        <item name="android:textSize">@dimen/history_list_item_test_type_text_size</item>
+    </style>
+
+    <!-- Shape styles. -->
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+</resources>

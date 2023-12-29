@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/history_list_item_view_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/transparent_green"
+    app:strokeColor="@color/deep_blue"
+    app:strokeWidth="2dp"
+    android:layout_marginTop="@dimen/standard_space_between_views"
+    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/fragment_small_border_margin">
+
+        <TextView
+            android:id="@+id/test_type_text_view"
+            style="@style/history_list_item_test_type_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/multiplication_table_category_title" />
+
+        <TextView
+            android:id="@+id/test_assessment_text_view"
+            style="@style/screen_small_sub_title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space_between_views"
+            android:text="@string/test_assessment_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test_type_text_view" />
+
+        <TextView
+            android:id="@+id/total_test_time_text_view"
+            style="@style/screen_small_sub_title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space_between_views"
+            android:text="@string/total_test_time_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test_assessment_text_view" />
+
+        <TextView
+            android:id="@+id/test_date_text_view"
+            style="@style/screen_extra_small_sub_title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_space_between_views"
+            tools:text="17.12.2023 11:25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/total_test_time_text_view" />
+
+        <TextView
+            android:id="@+id/test_id_text_view"
+            style="@style/screen_extra_small_sub_title_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_id_number_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/test_date_text_view"
+            app:layout_constraintBottom_toBottomOf="@+id/test_date_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

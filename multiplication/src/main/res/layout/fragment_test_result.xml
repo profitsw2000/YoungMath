@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/test_result_fragment_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/fragment_standard_border_margin"
+    tools:context=".presentation.view.TestResultFragment">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/multiplication_screen_title"
+        style="@style/screen_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/multiplication_screen_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/test_result_text_view"
+        style="@style/screen_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_result_sub_screen_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/multiplication_screen_title"
+        android:layout_marginTop="@dimen/standard_space_between_views"/>
+
+    <TextView
+        android:id="@+id/right_answers_number_text_view"
+        style="@style/right_answers_number_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/right_answers_number_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test_result_text_view"
+        android:layout_marginTop="@dimen/small_space_between_views"/>
+
+    <TextView
+        android:id="@+id/wrong_answers_number_text_view"
+        style="@style/wrong_answers_number_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/wrong_answers_number_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/right_answers_number_text_view"
+        android:layout_marginTop="@dimen/small_space_between_views"/>
+
+    <TextView
+        android:id="@+id/result_assessment_text_view"
+        style="@style/screen_sub_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_assessment_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrong_answers_number_text_view"
+        android:layout_marginTop="@dimen/small_space_between_views"/>
+
+    <TextView
+        android:id="@+id/total_test_time_text_view"
+        style="@style/screen_small_sub_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/total_test_time_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_assessment_text_view"
+        android:layout_marginTop="@dimen/small_space_between_views"/>
+
+    <Button
+        android:id="@+id/back_to_main_multiplication_screen_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:text="@string/back_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_test_time_text_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
