@@ -1,8 +1,10 @@
 package ru.profitsw2000.multiplication.presentation.viewmodel
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
+import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.profitsw2000.core.viewmodel.CoreViewModel

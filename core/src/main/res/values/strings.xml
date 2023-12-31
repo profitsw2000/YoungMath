@@ -4,4 +4,5 @@
     <string name="test_result_write_to_db_error">Ошибка сохранения результата проверки</string>
     <string name="test_result_write_to_db_success">Результат проверки успешно сохранен</string>
     <string name="snackbar_reload_text">Перезагрузить</string>
+    <string name="settings_screen_title_text">Настройки</string>
 </resources>

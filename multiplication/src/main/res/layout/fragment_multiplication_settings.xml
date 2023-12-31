@@ -1,8 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settings_fragment_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/fragment_standard_border_margin"
     tools:context=".presentation.view.MultiplicationSettingsFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fifty_percent_vertical_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/settings_fragment_title_text_view"
+        style="@style/screen_title_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_screen_title_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/examples_number_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Количество примеров"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_fragment_title_text_view" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/examples_number_picker_text_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/examples_number_title_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintTop_toTopOf="@id/examples_number_title_text_view">
+
+        <AutoCompleteTextView
+            android:id="@+id/examples_number_picker_auto_complete_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:inputType="none"
+            app:simpleItems="@array/examples_number_array" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/examples_number_picker_text_view"
+        style="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="fifty_percent_vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/examples_number_title_text_view"
+        app:layout_constraintBottom_toBottomOf="@id/examples_number_title_text_view"/>
+
+    <View
+        android:id="@+id/first_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:background="@color/deep_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/examples_number_title_text_view" />
+
+    <TextView
+        android:id="@+id/task_time_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:text="Время выполнения примера, сек"
+        app:layout_constraintEnd_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_view" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/task_time_picker_text_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/task_time_title_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintTop_toTopOf="@id/task_time_title_text_view">
+
+        <AutoCompleteTextView
+            android:id="@+id/task_time_picker_auto_complete_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:inputType="number"
+            app:simpleItems="@array/task_time_array" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/second_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:background="@color/deep_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_time_title_text_view" />
+
+    <TextView
+        android:id="@+id/assessment_from_error_number_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:text="Оценка при количестве ошибок"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_view" />
+
+    <ImageView
+        android:id="@+id/five_assessment_mark_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        app:layout_constraintTop_toBottomOf="@id/assessment_from_error_number_title_text_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/circle_12"/>
+
+    <TextView
+        android:id="@+id/five_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standard_space_between_views"
+        android:text="5"
+        app:layout_constraintStart_toEndOf="@+id/five_assessment_mark_image_view"
+        app:layout_constraintTop_toTopOf="@+id/five_assessment_mark_image_view"
+        app:layout_constraintBottom_toBottomOf="@+id/five_assessment_mark_image_view"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/five_assessment_error_number_picker_text_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/five_assessment_mark_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintTop_toTopOf="@id/five_assessment_mark_image_view">
+
+        <AutoCompleteTextView
+            android:id="@+id/five_assessment_error_number_picker_auto_complete_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/four_assessment_mark_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_space_between_views"
+        app:layout_constraintTop_toBottomOf="@id/five_assessment_mark_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/circle_12"/>
+
+    <TextView
+        android:id="@+id/four_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standard_space_between_views"
+        android:text="4"
+        app:layout_constraintStart_toEndOf="@+id/four_assessment_mark_image_view"
+        app:layout_constraintTop_toTopOf="@+id/four_assessment_mark_image_view"
+        app:layout_constraintBottom_toBottomOf="@+id/four_assessment_mark_image_view"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/four_assessment_error_number_picker_text_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/four_assessment_mark_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintTop_toTopOf="@id/four_assessment_mark_image_view">
+
+        <AutoCompleteTextView
+            android:id="@+id/four_assessment_error_number_picker_auto_complete_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:inputType="number"
+            app:simpleItems="@array/task_time_array" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/three_assessment_mark_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_space_between_views"
+        app:layout_constraintTop_toBottomOf="@id/four_assessment_mark_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/circle_12"/>
+
+    <TextView
+        android:id="@+id/three_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standard_space_between_views"
+        android:text="3"
+        app:layout_constraintStart_toEndOf="@+id/three_assessment_mark_image_view"
+        app:layout_constraintTop_toTopOf="@+id/three_assessment_mark_image_view"
+        app:layout_constraintBottom_toBottomOf="@+id/three_assessment_mark_image_view"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/three_assessment_error_number_picker_text_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/three_assessment_mark_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintTop_toTopOf="@id/three_assessment_mark_image_view">
+
+        <AutoCompleteTextView
+            android:id="@+id/three_assessment_error_number_picker_auto_complete_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:inputType="number"
+            app:simpleItems="@array/task_time_array" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:id="@+id/third_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:background="@color/deep_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/three_assessment_error_number_picker_text_input_layout" />
+
+    <TextView
+        android:id="@+id/high_difficulty_test_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:text="Тест повышенной сложности"
+        app:layout_constraintEnd_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/third_view" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/high_difficulty_test_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/high_difficulty_test_title_text_view"
+        app:layout_constraintBottom_toBottomOf="@id/high_difficulty_test_title_text_view"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
