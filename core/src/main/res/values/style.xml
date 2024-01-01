@@ -76,4 +76,10 @@
         <item name="cornerSize">16dp</item>
     </style>
 
+    <!--Component styles-->
+    <style name="ymAppSwitchStyle" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="trackTint">@color/custom_switch_track_color</item>
+        <item name="thumbTint">@color/custom_switch_thumb_color</item>
+    </style>
+
 </resources>

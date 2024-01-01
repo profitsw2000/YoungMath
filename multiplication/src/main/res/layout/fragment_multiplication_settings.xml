@@ -260,6 +260,7 @@
         android:id="@+id/high_difficulty_test_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/high_difficulty_test_title_text_view"
         app:layout_constraintBottom_toBottomOf="@id/high_difficulty_test_title_text_view"/>

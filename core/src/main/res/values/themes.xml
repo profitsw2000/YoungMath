@@ -9,9 +9,15 @@
         <item name="colorOnPrimaryContainer">@color/white</item>
         <item name="colorPrimaryInverse">@color/deep_blue</item>
 
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOutline">@color/deep_blue</item>
+
         <!-- Background color. -->
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/black</item>
+
+        <!--Стили для отдельных компонентов -->
+        <item name="switchStyle">@style/ymAppSwitchStyle</item>
 
     </style>
 </resources>
