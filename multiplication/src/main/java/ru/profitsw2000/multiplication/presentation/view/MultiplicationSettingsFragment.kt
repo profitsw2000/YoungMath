@@ -16,8 +16,9 @@ class MultiplicationSettingsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multiplication_settings, container, false)
+        _binding = FragmentMultiplicationSettingsBinding.bind(inflater.inflate(R.layout.fragment_multiplication_settings, container, false))
+        return binding.root
     }
 }
