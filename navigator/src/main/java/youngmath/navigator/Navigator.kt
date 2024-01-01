@@ -14,6 +14,8 @@ interface Navigator {
 
     fun navigateToMultiplicationHistoryDetails(bundle: Bundle)
 
+    fun navigateToMultiplicationSettings()
+
     fun navigateUp()
 
 }

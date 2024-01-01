@@ -82,4 +82,8 @@
         <item name="thumbTint">@color/custom_switch_thumb_color</item>
     </style>
 
+    <style name="ymExposedDropdownMenuStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+    </style>
+
 </resources>

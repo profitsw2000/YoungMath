@@ -9,6 +9,7 @@
     <color name="yellow">#FFFF00</color>
     <color name="lime">#00FF00</color>
     <color name="orange">#FF9800</color>
+    <color name="semi_transparent_blue">#802342F3</color>
     <color name="transparent_red">#20FF0000</color>
     <color name="transparent_green">#20008000</color>
     <color name="transparent_blue">#202342F3</color>

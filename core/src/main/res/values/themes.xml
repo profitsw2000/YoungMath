@@ -9,7 +9,7 @@
         <item name="colorOnPrimaryContainer">@color/white</item>
         <item name="colorPrimaryInverse">@color/deep_blue</item>
 
-        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
         <item name="colorOutline">@color/deep_blue</item>
 
         <!-- Background color. -->
