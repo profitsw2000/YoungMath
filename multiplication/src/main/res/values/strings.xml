@@ -14,4 +14,11 @@
     <string name="test_skipped_text">Прерван</string>
     <string name="examples_list_title">Задания:</string>
     <string name="example_item_text">%1$s)   %2$s * %3$s = %4$s (%5$s сек.)</string>
+    <string name="examples_number_title_text">Количество примеров</string>
+    <string name="task_time_title_text">Время выполнения примера, сек</string>
+    <string name="assessment_from_error_number_title_text">Оценка при количестве ошибок</string>
+    <string name="assessment_five_title_text">5</string>
+    <string name="assessment_four_title_text">4</string>
+    <string name="assessment_three_title_text">3</string>
+    <string name="high_difficulty_test_title_text">Тест повышенной сложности</string>
 </resources>
