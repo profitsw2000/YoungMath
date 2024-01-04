@@ -9,14 +9,21 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import ru.profitsw2000.data.model.MultiplicationDataModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
+import ru.profitsw2000.data.model.MultiplicationTestSettingsModel
 import java.util.Calendar
 import kotlin.random.Random
 
 private const val taskTimeIncrementStep = 0.02f
-private const val taskTime = 10f
-private const val tasksNumber = 10
 
 class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
+
+    //settings
+    private var taskTime = 10f
+    private var tasksNumber = 10
+    private var fiveAssessmentErrorNumber = 0
+    private var fourAssessmentErrorNumber = 1
+    private var threeAssessmentErrorNumber = 2
+    private var isHighDifficulty = false
 
     //variables to write to database
     private var testDate = Calendar.getInstance().time
@@ -101,6 +108,22 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
         } else {
             incrementTaskNumber()
         }
+    }
+
+    fun updateSettings(multiplicationTestSettingsModel: MultiplicationTestSettingsModel): Boolean {
+        val fiveErrorNumber = multiplicationTestSettingsModel.fiveAssessmentErrorsNumber
+        val fourErrorNumber = multiplicationTestSettingsModel.fourAssessmentErrorsNumber
+        val threeErrorNumber = multiplicationTestSettingsModel.threeAssessmentErrorsNumber
+
+        if (fiveErrorNumber < fourErrorNumber && fourErrorNumber < threeErrorNumber) {
+            taskTime = multiplicationTestSettingsModel.taskTime
+            tasksNumber = multiplicationTestSettingsModel.tasksNumber
+            fiveAssessmentErrorNumber = fiveErrorNumber
+            fourAssessmentErrorNumber = fourErrorNumber
+            threeAssessmentErrorNumber = threeErrorNumber
+            isHighDifficulty = multiplicationTestSettingsModel.isHighDifficulty
+            return true
+        } else return false
     }
 
     private fun incrementTime() {
@@ -207,10 +230,10 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     }
 
     private fun testAssessment(): Int {
-        return when(tasksNumber - rightAnswers) {
-            0 -> 5
-            1 -> 4
-            2 -> 3
+        return when {
+            (tasksNumber - rightAnswers) <= fiveAssessmentErrorNumber -> 5
+            (tasksNumber - rightAnswers) > fiveAssessmentErrorNumber && (tasksNumber - rightAnswers) <= fourAssessmentErrorNumber-> 4
+            (tasksNumber - rightAnswers) > fourAssessmentErrorNumber && (tasksNumber - rightAnswers) <= threeAssessmentErrorNumber -> 3
             else -> 2
         }
     }
