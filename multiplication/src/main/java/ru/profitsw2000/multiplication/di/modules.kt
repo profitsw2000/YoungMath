@@ -8,6 +8,6 @@ import ru.profitsw2000.multiplication.presentation.viewmodel.MultiplicationViewM
 
 val multiplicationModule = module {
     single<MultiplicationRepository> { MultiplicationRepositoryImpl(get()) }
-    single { MultiplicationViewModel(get(), get()) }
+    single { MultiplicationViewModel(get(), get(), get()) }
     factory { MultiplicationHistoryMapper() }
 }

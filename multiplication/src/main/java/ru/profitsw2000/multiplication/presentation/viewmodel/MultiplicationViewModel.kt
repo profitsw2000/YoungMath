@@ -1,6 +1,7 @@
 package ru.profitsw2000.multiplication.presentation.viewmodel
 
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -16,7 +17,8 @@ import ru.profitsw2000.data.model.state.MultiplicationHistoryState
 
 class MultiplicationViewModel (
     private val multiplicationRepository: MultiplicationRepository,
-    private val multiplicationHistoryMapper: MultiplicationHistoryMapper
+    private val multiplicationHistoryMapper: MultiplicationHistoryMapper,
+    private val sharedPreferences: SharedPreferences
 ) : CoreViewModel() {
 
     var currentMultiplicationHistoryListVisiblePosition = 0
