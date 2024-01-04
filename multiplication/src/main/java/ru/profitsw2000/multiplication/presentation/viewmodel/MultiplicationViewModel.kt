@@ -8,11 +8,18 @@ import androidx.lifecycle.asLiveData
 import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import ru.profitsw2000.core.utils.MULTIPLICATION_FIVE_ASSESSMENT_ERRORS_NUMBER_KEY
+import ru.profitsw2000.core.utils.MULTIPLICATION_FOUR_ASSESSMENT_ERRORS_NUMBER_KEY
+import ru.profitsw2000.core.utils.MULTIPLICATION_HIGH_DIFFICULTY_FLAG_KEY
+import ru.profitsw2000.core.utils.MULTIPLICATION_TASKS_NUMBER_KEY
+import ru.profitsw2000.core.utils.MULTIPLICATION_TASK_TIME_KEY
+import ru.profitsw2000.core.utils.MULTIPLICATION_THREE_ASSESSMENT_ERRORS_NUMBER_KEY
 import ru.profitsw2000.core.viewmodel.CoreViewModel
 import ru.profitsw2000.data.domain.MultiplicationRepository
 import ru.profitsw2000.data.mappers.MultiplicationHistoryMapper
 import ru.profitsw2000.data.model.MultiplicationDataModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
+import ru.profitsw2000.data.model.MultiplicationTestSettingsModel
 import ru.profitsw2000.data.model.state.MultiplicationHistoryState
 
 class MultiplicationViewModel (
@@ -189,4 +196,35 @@ class MultiplicationViewModel (
         _multiplicationHistoryLiveData.value = MultiplicationHistoryState.Loading
         loadInProgress = true
     }
+
+    fun getMultiplicationSettings(): MultiplicationTestSettingsModel {
+        return MultiplicationTestSettingsModel(
+            taskTime = sharedPreferences.getFloat(MULTIPLICATION_TASK_TIME_KEY, 10f),
+            tasksNumber = sharedPreferences.getInt(MULTIPLICATION_TASKS_NUMBER_KEY, 10),
+            fiveAssessmentErrorsNumber = sharedPreferences.getInt(MULTIPLICATION_FIVE_ASSESSMENT_ERRORS_NUMBER_KEY, 0),
+            fourAssessmentErrorsNumber = sharedPreferences.getInt(MULTIPLICATION_FOUR_ASSESSMENT_ERRORS_NUMBER_KEY, 1),
+            threeAssessmentErrorsNumber = sharedPreferences.getInt(MULTIPLICATION_THREE_ASSESSMENT_ERRORS_NUMBER_KEY, 2),
+            isHighDifficulty = sharedPreferences.getBoolean(MULTIPLICATION_HIGH_DIFFICULTY_FLAG_KEY, false)
+        )
+    }
+
+    fun writeMultiplicationSettingsToSharedPreferences(multiplicationTestSettingsModel: MultiplicationTestSettingsModel) {
+        with(multiplicationTestSettingsModel) {
+            sharedPreferences
+                .edit()
+                .putFloat(MULTIPLICATION_TASK_TIME_KEY, taskTime)
+                .putInt(MULTIPLICATION_TASKS_NUMBER_KEY, tasksNumber)
+                .putInt(MULTIPLICATION_FIVE_ASSESSMENT_ERRORS_NUMBER_KEY, fiveAssessmentErrorsNumber)
+                .putInt(MULTIPLICATION_FOUR_ASSESSMENT_ERRORS_NUMBER_KEY, fourAssessmentErrorsNumber)
+                .putInt(MULTIPLICATION_THREE_ASSESSMENT_ERRORS_NUMBER_KEY, threeAssessmentErrorsNumber)
+                .putBoolean(MULTIPLICATION_HIGH_DIFFICULTY_FLAG_KEY, isHighDifficulty)
+                .apply()
+        }
+    }
+
+    fun updateMultiplicationTesSettings(multiplicationTestSettingsModel: MultiplicationTestSettingsModel) {
+        //multiplicationRepository.multiplicationTestDataGenerator.updateSettings(multiplicationTestSettingsModel)
+    }
+
+
 }
