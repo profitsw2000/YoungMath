@@ -275,5 +275,15 @@
         app:layout_constraintTop_toTopOf="@id/high_difficulty_test_title_text_view"
         app:layout_constraintBottom_toBottomOf="@id/high_difficulty_test_title_text_view"/>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standard_space_between_views"
+        android:text="УСТАНОВИТЬ"
+        app:layout_constraintEnd_toStartOf="@+id/fifty_percent_vertical_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/high_difficulty_test_title_text_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
