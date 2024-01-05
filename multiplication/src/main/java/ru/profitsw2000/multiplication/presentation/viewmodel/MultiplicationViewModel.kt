@@ -222,7 +222,7 @@ class MultiplicationViewModel (
         }
     }
 
-    fun updateMultiplicationTesSettings(multiplicationTestSettingsModel: MultiplicationTestSettingsModel) {
+    fun updateMultiplicationTestSettings(multiplicationTestSettingsModel: MultiplicationTestSettingsModel) {
         multiplicationRepository.multiplicationTestDataGenerator.updateSettings(multiplicationTestSettingsModel)
     }
 
