@@ -31,6 +31,10 @@ class NavigatorImpl(
         navController.navigate(R.id.multiplicationHistoryDetailsFragment, bundle)
     }
 
+    override fun navigateToMultiplicationSettings() {
+        navController.navigate(R.id.multiplicationSettingsFragment)
+    }
+
     override fun navigateUp() {
         navController.navigateUp()
     }

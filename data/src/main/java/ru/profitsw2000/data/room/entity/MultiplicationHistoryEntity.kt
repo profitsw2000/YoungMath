@@ -9,6 +9,7 @@ data class MultiplicationHistoryEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val testDate: Date,
+    val assessment: Int,
     val firstMultiplicatorList: List<Int>,
     val secondMultiplicatorList: List<Int>,
     val userMultiplicationResults: List<Int>,

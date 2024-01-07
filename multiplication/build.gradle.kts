@@ -25,6 +25,8 @@ dependencies {
     implementation(ViewModel.viewModel)
     //Legacy
     implementation(Legacy.legacy)
+    //GSON
+    implementation(GSON.gson)
     //RxJava
     implementation(RxJava.rxJava)
     implementation(RxJava.rxAndroid)

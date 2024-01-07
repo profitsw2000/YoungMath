@@ -54,7 +54,7 @@ class MultiplicationFragment : Fragment() {
                 true
             }
             R.id.settings -> {
-                Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show()
+                navigator.navigateToMultiplicationSettings()
                 true
             }
             else -> super.onOptionsItemSelected(item)

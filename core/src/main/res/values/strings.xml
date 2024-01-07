@@ -4,4 +4,9 @@
     <string name="test_result_write_to_db_error">Ошибка сохранения результата проверки</string>
     <string name="test_result_write_to_db_success">Результат проверки успешно сохранен</string>
     <string name="snackbar_reload_text">Перезагрузить</string>
+    <string name="settings_screen_title_text">Настройки</string>
+    <string name="apply_settings_button_text">ПРИМЕНИТЬ</string>
+    <string name="settings_dialog_positive_button_text">ОК</string>
+    <string name="settings_dialog_negative_button_text">Отмена</string>
+    <string name="exit_settings_screen_dialog_message_text">Выйти без изменения настроек?</string>
 </resources>

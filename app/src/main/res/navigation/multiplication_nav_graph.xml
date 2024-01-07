@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_multiplicationFragment_to_multiplicationHistoryDetailsFragment"
             app:destination="@id/multiplicationHistoryDetailsFragment" />
+        <action
+            android:id="@+id/action_multiplicationFragment_to_multiplicationSettingsFragment"
+            app:destination="@id/multiplicationSettingsFragment" />
     </fragment>
 
     <fragment
@@ -50,5 +53,11 @@
         android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationHistoryDetailsFragment"
         android:label="MultiplicationHistoryDetailsFragment"
         tools:layout="@layout/fragment_multiplication_history_details"/>
+
+    <fragment
+        android:id="@+id/multiplicationSettingsFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationSettingsFragment"
+        android:label="MultiplicationSettingsFragment"
+        tools:layout="@layout/fragment_multiplication_settings"/>
 
 </navigation>

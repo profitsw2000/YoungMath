@@ -9,6 +9,7 @@ class MultiplicationHistoryMapper {
         return MultiplicationHistoryEntity(
             id = multiplicationHistoryModel.id,
             testDate = multiplicationHistoryModel.testDate,
+            assessment = multiplicationHistoryModel.assessment,
             firstMultiplicatorList = multiplicationHistoryModel.firstMultiplicatorList,
             secondMultiplicatorList = multiplicationHistoryModel.secondMultiplicatorList,
             userMultiplicationResults = multiplicationHistoryModel.userMultiplicationResults,
@@ -22,12 +23,7 @@ class MultiplicationHistoryMapper {
         return MultiplicationHistoryModel(
             id = multiplicationHistoryEntity.id,
             testDate = multiplicationHistoryEntity.testDate,
-            assessment = getAssessment(
-                multiplicationHistoryEntity.firstMultiplicatorList,
-                multiplicationHistoryEntity.secondMultiplicatorList,
-                multiplicationHistoryEntity.userMultiplicationResults,
-                multiplicationHistoryEntity.tasksNumber
-            ),
+            assessment = multiplicationHistoryEntity.assessment,
             rightAnswers = getRightAnswersNumber(
                 multiplicationHistoryEntity.firstMultiplicatorList,
                 multiplicationHistoryEntity.secondMultiplicatorList,
