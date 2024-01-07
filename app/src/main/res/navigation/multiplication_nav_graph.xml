@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multiplication_nav_graph"
+    app:startDestination="@id/multiplicationFragment">
+
+    <fragment
+        android:id="@+id/multiplicationFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationFragment"
+        android:label="MultiplicationFragment"
+        tools:layout="@layout/fragment_multiplication">
+        <action
+            android:id="@+id/action_multiplicationFragment_to_testMultiplicationFragment"
+            app:destination="@id/testMultiplicationFragment" />
+        <action
+            android:id="@+id/action_multiplicationFragment_to_multiplicationHistoryFragment"
+            app:destination="@id/multiplicationHistoryFragment" />
+        <action
+            android:id="@+id/action_multiplicationFragment_to_multiplicationHistoryDetailsFragment"
+            app:destination="@id/multiplicationHistoryDetailsFragment" />
+        <action
+            android:id="@+id/action_multiplicationFragment_to_multiplicationSettingsFragment"
+            app:destination="@id/multiplicationSettingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/testMultiplicationFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.TestMultiplicationFragment"
+        android:label="TestMultiplicationFragment"
+        tools:layout="@layout/fragment_test_multiplication">
+        <action
+            android:id="@+id/action_testMultiplicationFragment_to_testResultFragment"
+            app:destination="@id/testResultFragment"
+            app:popUpTo="@id/testMultiplicationFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/testResultFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.TestResultFragment"
+        android:label="TestResultFragment"
+        tools:layout="@layout/fragment_test_result"/>
+
+    <fragment
+        android:id="@+id/multiplicationHistoryFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationHistoryFragment"
+        android:label="MultiplicationHistoryFragment"
+        tools:layout="@layout/fragment_multiplication_history"/>
+
+    <fragment
+        android:id="@+id/multiplicationHistoryDetailsFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationHistoryDetailsFragment"
+        android:label="MultiplicationHistoryDetailsFragment"
+        tools:layout="@layout/fragment_multiplication_history_details"/>
+
+    <fragment
+        android:id="@+id/multiplicationSettingsFragment"
+        android:name="ru.profitsw2000.multiplication.presentation.view.MultiplicationSettingsFragment"
+        android:label="MultiplicationSettingsFragment"
+        tools:layout="@layout/fragment_multiplication_settings"/>
+
+</navigation>
