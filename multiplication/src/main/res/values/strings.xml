@@ -21,4 +21,5 @@
     <string name="assessment_four_title_text">4</string>
     <string name="assessment_three_title_text">3</string>
     <string name="high_difficulty_test_title_text">Тест повышенной сложности</string>
+    <string name="apply_settings_dialog_message_text">Применить настройки и выйти?</string>
 </resources>

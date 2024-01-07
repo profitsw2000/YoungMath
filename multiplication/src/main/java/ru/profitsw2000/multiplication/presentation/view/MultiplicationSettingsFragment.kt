@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.OnBackPressedCallback
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.profitsw2000.data.model.MultiplicationTestSettingsModel
@@ -49,6 +51,17 @@ class MultiplicationSettingsFragment : Fragment() {
 
     private val threeAssessmentErrorsNumberAdapter by lazy {
         ArrayAdapter<Int>(requireContext(), R.layout.drop_down_item)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showExitDialog()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onCreateView(
@@ -231,18 +244,46 @@ class MultiplicationSettingsFragment : Fragment() {
 
     private fun initButton() = with(binding) {
         setMultiplicationSettingsButton.setOnClickListener {
-            val newMultiplicationTestSettingsModel = MultiplicationTestSettingsModel(
-                taskTime = taskTimePickerAutoCompleteTextView.text.toString().toFloat(),
-                tasksNumber = examplesNumberPickerAutoCompleteTextView.text.toString().toInt(),
-                fiveAssessmentErrorsNumber = fiveAssessmentErrorNumberPickerAutoCompleteTextView.text.toString().toInt(),
-                fourAssessmentErrorsNumber = fourAssessmentErrorNumberPickerAutoCompleteTextView.text.toString().toInt(),
-                threeAssessmentErrorsNumber = threeAssessmentErrorNumberPickerAutoCompleteTextView.text.toString().toInt(),
-                isHighDifficulty = highDifficultyTestSwitch.isChecked
-            )
-            multiplicationViewModel.writeMultiplicationSettingsToSharedPreferences(newMultiplicationTestSettingsModel)
-            multiplicationViewModel.updateMultiplicationTestSettings(newMultiplicationTestSettingsModel)
-            navigator.navigateUp()
+            showApplySettingsDialog()
         }
+    }
+
+    private fun showExitDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(ru.profitsw2000.core.R.string.settings_screen_title_text))
+            .setMessage(getString(ru.profitsw2000.core.R.string.exit_settings_screen_dialog_message_text))
+            .setPositiveButton(getString(ru.profitsw2000.core.R.string.settings_dialog_positive_button_text)) { _, _ ->
+                navigator.navigateUp()
+            }
+            .setNegativeButton(getString(ru.profitsw2000.core.R.string.settings_dialog_negative_button_text)) { dialog , _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
+    private fun showApplySettingsDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(ru.profitsw2000.core.R.string.settings_screen_title_text))
+            .setMessage(getString(R.string.apply_settings_dialog_message_text))
+            .setPositiveButton(getString(ru.profitsw2000.core.R.string.settings_dialog_positive_button_text)) { _, _ ->
+                applySettingsAndExit()
+            }
+            .setNegativeButton(getString(ru.profitsw2000.core.R.string.settings_dialog_negative_button_text)) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
+    private fun applySettingsAndExit() = with(binding) {
+        val newMultiplicationTestSettingsModel = MultiplicationTestSettingsModel(
+            taskTime = taskTimePickerAutoCompleteTextView.text.toString().toFloat(),
+            tasksNumber = examplesNumberPickerAutoCompleteTextView.text.toString().toInt(),
+            fiveAssessmentErrorsNumber = fiveAssessmentErrorNumberPickerAutoCompleteTextView.text.toString().toInt(),
+            fourAssessmentErrorsNumber = fourAssessmentErrorNumberPickerAutoCompleteTextView.text.toString().toInt(),
+            threeAssessmentErrorsNumber = threeAssessmentErrorNumberPickerAutoCompleteTextView.text.toString().toInt(),
+            isHighDifficulty = highDifficultyTestSwitch.isChecked
+        )
+        multiplicationViewModel.writeMultiplicationSettingsToSharedPreferences(newMultiplicationTestSettingsModel)
+        multiplicationViewModel.updateMultiplicationTestSettings(newMultiplicationTestSettingsModel)
+        navigator.navigateUp()
     }
 
     override fun onDestroyView() {
