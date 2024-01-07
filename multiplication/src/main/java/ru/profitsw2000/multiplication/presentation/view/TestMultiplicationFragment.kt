@@ -48,6 +48,16 @@ class TestMultiplicationFragment : Fragment() {
         observeData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        multiplicationViewModel.resumeTest()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        multiplicationViewModel.interruptTest()
+    }
+
     private fun initViews() = with(binding) {
         sendAnswerImageView.setOnClickListener {
             multiplicationResultEditText.text.toString().apply {

@@ -5,6 +5,12 @@ plugins {
 
 android {
     namespace 'ru.profitsw2000.youngmath'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    compileSdk 34
+    buildToolsVersion '34.0.0'
 }
 
 dependencies {

@@ -9,4 +9,5 @@
     <string name="settings_dialog_positive_button_text">ОК</string>
     <string name="settings_dialog_negative_button_text">Отмена</string>
     <string name="exit_settings_screen_dialog_message_text">Выйти без изменения настроек?</string>
+    <string name="no_assessment_brief_text">н/а</string>
 </resources>

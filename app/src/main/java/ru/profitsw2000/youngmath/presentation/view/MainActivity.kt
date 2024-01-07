@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         initNavigation()
         setActionBar()
         setMultiplicationSettings()
+        multiplicationViewModel.checkForInterruptedTest()
     }
 
     private fun initNavigation() {

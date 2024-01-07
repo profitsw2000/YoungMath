@@ -46,8 +46,12 @@ class MultiplicationHistoryAdapter(
 
         with(holder) {
             //Texts
-            testAssessment.text = context.getString(R.string.test_assessment_text,
-                data[position].assessment.toString())
+            testAssessment.text = if (data[position].assessment != 1) {
+                context.getString(R.string.test_assessment_text,
+                    data[position].assessment.toString())
+            } else {
+                context.getString(R.string.no_test_assessment_pre_text) + context.getString(ru.profitsw2000.core.R.string.no_assessment_brief_text)
+            }
             testDuration.text = context.getString(R.string.total_test_time_text,
                 "%.2f".format(data[position].testTime))
             testDate.text = SimpleDateFormat("dd.MM.yyyy HH:mm").format(data[position].testDate)
