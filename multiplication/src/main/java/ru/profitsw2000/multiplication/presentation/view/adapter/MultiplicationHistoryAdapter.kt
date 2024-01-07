@@ -26,8 +26,6 @@ class MultiplicationHistoryAdapter(
         //notifyDataSetChanged()
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = HistoryListItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val multiplicationHistoryViewHolder = ViewHolder(binding)
@@ -64,7 +62,7 @@ class MultiplicationHistoryAdapter(
             cardView.strokeColor = ContextCompat.getColor(context,
                 getViewTextColorFromAssessment(context, data[position].assessment))
         }
-        Log.d("VVV", "onBindViewHolder, position: $position")
+        //Log.d("VVV", "onBindViewHolder, position: $position")
         onHistoryListEventsListener.onPositionChanged(position)
     }
 

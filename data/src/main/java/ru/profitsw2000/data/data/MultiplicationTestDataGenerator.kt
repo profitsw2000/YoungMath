@@ -115,7 +115,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
         val fourErrorNumber = multiplicationTestSettingsModel.fourAssessmentErrorsNumber
         val threeErrorNumber = multiplicationTestSettingsModel.threeAssessmentErrorsNumber
 
-        if (fiveErrorNumber < fourErrorNumber && fourErrorNumber < threeErrorNumber) {
+        if (fourErrorNumber in (fiveErrorNumber + 1) until threeErrorNumber) {
             taskTime = multiplicationTestSettingsModel.taskTime
             tasksNumber = multiplicationTestSettingsModel.tasksNumber
             fiveAssessmentErrorNumber = fiveErrorNumber

@@ -77,14 +77,6 @@ class TestMultiplicationFragment : Fragment() {
         }
     }
 
-    private fun observeHistoryResults() {
-
-        multiplicationViewModel.multiplicationHistoryResultsLiveData.observe(viewLifecycleOwner) {
-            multiplicationViewModel.writeMultiplicationTestResult(it)
-        }
-
-    }
-
     private fun formatTime(timeWithMillis: Float): String {
         return "%.2f".format(timeWithMillis)
     }

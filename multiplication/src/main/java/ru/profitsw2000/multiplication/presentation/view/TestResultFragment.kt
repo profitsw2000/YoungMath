@@ -53,6 +53,7 @@ class TestResultFragment : Fragment() {
     private fun observeTestHistoryData() {
         multiplicationViewModel.multiplicationHistoryResultsLiveData.observe(viewLifecycleOwner) {
             showResult(it)
+            Log.d(TAG, "observeTestHistoryData: $it")
             multiplicationViewModel.writeMultiplicationTestResult(it)
         }
     }
