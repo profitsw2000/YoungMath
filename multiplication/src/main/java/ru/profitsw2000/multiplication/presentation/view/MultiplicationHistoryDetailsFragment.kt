@@ -52,8 +52,12 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
             multiplicationHistoryModel.rightAnswers.toString())
         wrongAnswersNumberTextView.text = getString(R.string.wrong_answers_number_text,
             multiplicationHistoryModel.wrongAnswers.toString())
-        resultAssessmentTextView.text = getString(R.string.test_assessment_text,
-            multiplicationHistoryModel.assessment.toString())
+        resultAssessmentTextView.text = if (multiplicationHistoryModel.assessment != 1) {
+            getString(R.string.test_assessment_text,
+                multiplicationHistoryModel.assessment.toString())
+        } else {
+            getString(R.string.no_test_assessment_pre_text) + getString(ru.profitsw2000.core.R.string.no_assessment_brief_text)
+        }
         totalTestTimeTextView.text = getString(R.string.total_test_time_text,
             "%.2f".format(multiplicationHistoryModel.testTime))
         testDateTextView.text = getString(R.string.test_execution_date_text,

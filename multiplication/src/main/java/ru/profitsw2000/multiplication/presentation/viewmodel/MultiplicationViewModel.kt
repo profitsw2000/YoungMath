@@ -8,11 +8,13 @@ import androidx.lifecycle.asLiveData
 import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import ru.profitsw2000.core.utils.INTERRUPTED_MULTIPLICATION_TEST_DATE
 import ru.profitsw2000.core.utils.MULTIPLICATION_FIVE_ASSESSMENT_ERRORS_NUMBER_KEY
 import ru.profitsw2000.core.utils.MULTIPLICATION_FOUR_ASSESSMENT_ERRORS_NUMBER_KEY
 import ru.profitsw2000.core.utils.MULTIPLICATION_HIGH_DIFFICULTY_FLAG_KEY
 import ru.profitsw2000.core.utils.MULTIPLICATION_TASKS_NUMBER_KEY
 import ru.profitsw2000.core.utils.MULTIPLICATION_TASK_TIME_KEY
+import ru.profitsw2000.core.utils.MULTIPLICATION_TEST_IS_INTERRUPTED_FLAG_KEY
 import ru.profitsw2000.core.utils.MULTIPLICATION_THREE_ASSESSMENT_ERRORS_NUMBER_KEY
 import ru.profitsw2000.core.viewmodel.CoreViewModel
 import ru.profitsw2000.data.domain.MultiplicationRepository
@@ -21,6 +23,9 @@ import ru.profitsw2000.data.model.MultiplicationDataModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import ru.profitsw2000.data.model.MultiplicationTestSettingsModel
 import ru.profitsw2000.data.model.state.MultiplicationHistoryState
+import ru.profitsw2000.data.room.entity.MultiplicationHistoryEntity
+import java.util.Calendar
+import java.util.Date
 
 class MultiplicationViewModel (
     private val multiplicationRepository: MultiplicationRepository,
@@ -226,5 +231,47 @@ class MultiplicationViewModel (
         multiplicationRepository.multiplicationTestDataGenerator.updateSettings(multiplicationTestSettingsModel)
     }
 
+    fun interruptTest() {
+        val testDate: Long = Calendar.getInstance().timeInMillis
+
+        sharedPreferences
+            .edit()
+            .putBoolean(MULTIPLICATION_TEST_IS_INTERRUPTED_FLAG_KEY, true)
+            .putLong(INTERRUPTED_MULTIPLICATION_TEST_DATE, testDate)
+            .apply()
+    }
+
+    fun resumeTest() {
+        sharedPreferences
+            .edit()
+            .putBoolean(MULTIPLICATION_TEST_IS_INTERRUPTED_FLAG_KEY, false)
+            .apply()
+    }
+
+    fun checkForInterruptedTest() {
+        val testWasInterrupted = sharedPreferences.getBoolean(
+            MULTIPLICATION_TEST_IS_INTERRUPTED_FLAG_KEY, false
+        )
+
+       if (testWasInterrupted) {
+           writeMultiplicationTestResult(
+               multiplicationHistoryMapper.map(
+                   MultiplicationHistoryEntity(
+                       id = 0,
+                       Date(sharedPreferences.getLong(INTERRUPTED_MULTIPLICATION_TEST_DATE, 0)),
+                       assessment = 1,
+                       firstMultiplicatorList = arrayListOf(),
+                       secondMultiplicatorList = arrayListOf(),
+                       userMultiplicationResults = arrayListOf(),
+                       tasksTime = arrayListOf(),
+                       tasksNumber = sharedPreferences.getInt(MULTIPLICATION_TASKS_NUMBER_KEY, 10),
+                       testWasInterrupted
+                   )
+               )
+           )
+           //сброс флага, сигнализирующего, что тест был прерван
+           resumeTest()
+       }
+    }
 
 }

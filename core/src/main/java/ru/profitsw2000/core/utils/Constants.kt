@@ -7,3 +7,6 @@ val MULTIPLICATION_FIVE_ASSESSMENT_ERRORS_NUMBER_KEY = "mult_five_assessment_err
 val MULTIPLICATION_FOUR_ASSESSMENT_ERRORS_NUMBER_KEY = "mult_four_assessment_errors_num"
 val MULTIPLICATION_THREE_ASSESSMENT_ERRORS_NUMBER_KEY = "mult_three_assessment_errors_num"
 val MULTIPLICATION_HIGH_DIFFICULTY_FLAG_KEY = "mult_high_difficulty"
+//Test anticheating preferences
+val MULTIPLICATION_TEST_IS_INTERRUPTED_FLAG_KEY = "mult_test_is_interrupted"
+val INTERRUPTED_MULTIPLICATION_TEST_DATE = "test_date"
