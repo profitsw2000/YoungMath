@@ -107,4 +107,9 @@ class TestMultiplicationFragment : Fragment() {
         _binding = null
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        multiplicationViewModel.resumeTest()
+    }
+
 }
