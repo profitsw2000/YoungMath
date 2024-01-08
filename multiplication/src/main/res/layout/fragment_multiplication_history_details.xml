@@ -123,6 +123,17 @@
                         test_date_text_view,
                         test_was_skipped_text_view"/>
 
+            <ImageView
+                android:id="@+id/high_difficulty_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standard_space_between_views"
+                android:background="@drawable/circle_image_view_background"
+                android:src="@drawable/high_difficulty_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout

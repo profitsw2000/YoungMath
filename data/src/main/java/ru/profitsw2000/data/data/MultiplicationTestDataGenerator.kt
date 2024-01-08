@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import ru.profitsw2000.core.utils.data.RandomNumberSourceImpl
+import ru.profitsw2000.core.utils.domain.RandomNumberSource
 import ru.profitsw2000.data.model.MultiplicationDataModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import ru.profitsw2000.data.model.MultiplicationTestSettingsModel
@@ -67,6 +69,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
             tasksNumber = tasksNumber,
             testTime = testTime,
             results = results,
+            isHighDifficulty = isHighDifficulty,
             isInterrupted = isInterrupted
         )
     )
@@ -172,8 +175,15 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
     }
 
     private fun generateTaskData() {
-        firstMultiplier = Random.nextInt(2, 10)
-        secondMultiplier = Random.nextInt(2, 10)
+        val randomNumberSource: RandomNumberSource = RandomNumberSourceImpl()
+
+        if (isHighDifficulty) {
+            firstMultiplier = randomNumberSource.getBiasedRandomIntNumber(2, 10)
+            secondMultiplier = randomNumberSource.getBiasedRandomIntNumber(2, 10)
+        } else {
+            firstMultiplier = randomNumberSource.getSimpleRandomIntNumber(2, 10)
+            secondMultiplier = randomNumberSource.getSimpleRandomIntNumber(2, 10)
+        }
     }
 
     private fun initDbVariables() {
@@ -216,6 +226,7 @@ class MultiplicationTestDataGenerator(private val scope: CoroutineScope) {
             tasksNumber = tasksNumber,
             testTime = testTime,
             results = results,
+            isHighDifficulty = isHighDifficulty,
             isInterrupted = isInterrupted
         )
     }

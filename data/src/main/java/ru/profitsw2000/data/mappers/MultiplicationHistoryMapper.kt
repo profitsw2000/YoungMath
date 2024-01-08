@@ -15,6 +15,7 @@ class MultiplicationHistoryMapper {
             userMultiplicationResults = multiplicationHistoryModel.userMultiplicationResults,
             tasksTime = multiplicationHistoryModel.tasksTime,
             tasksNumber = multiplicationHistoryModel.tasksNumber,
+            isHighDifficulty = multiplicationHistoryModel.isHighDifficulty,
             isInterrupted = multiplicationHistoryModel.isInterrupted
         )
     }
@@ -47,6 +48,7 @@ class MultiplicationHistoryMapper {
                 multiplicationHistoryEntity.firstMultiplicatorList,
                 multiplicationHistoryEntity.secondMultiplicatorList,
                 multiplicationHistoryEntity.userMultiplicationResults),
+            isHighDifficulty = multiplicationHistoryEntity.isHighDifficulty,
             isInterrupted = multiplicationHistoryEntity.isInterrupted
         )
     }

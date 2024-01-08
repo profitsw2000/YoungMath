@@ -64,6 +64,8 @@ class MultiplicationHistoryDetailsFragment : Fragment() {
             SimpleDateFormat("dd.MM.yyyy HH:mm").format(multiplicationHistoryModel.testDate))
         if (multiplicationHistoryModel.isInterrupted) testWasSkippedTextView.visibility = View.VISIBLE
         else testWasSkippedTextView.visibility = View.GONE
+        if (multiplicationHistoryModel.isHighDifficulty) highDifficultyImageView.visibility = View.VISIBLE
+        else highDifficultyImageView.visibility = View.GONE
     }
 
     private fun addExamples(multiplicationHistoryModel: MultiplicationHistoryModel) = with(binding) {

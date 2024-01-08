@@ -15,5 +15,6 @@ data class MultiplicationHistoryEntity(
     val userMultiplicationResults: List<Int>,
     val tasksTime: List<Float>,
     val tasksNumber: Int,
+    val isHighDifficulty: Boolean,
     val isInterrupted: Boolean
 )

@@ -19,5 +19,6 @@ data class MultiplicationHistoryModel(
     val tasksNumber: Int,
     val testTime: Float,
     val results: List<Boolean>,
+    val isHighDifficulty: Boolean,
     val isInterrupted: Boolean
 ): Parcelable

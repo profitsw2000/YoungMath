@@ -1,13 +1,11 @@
 package ru.profitsw2000.multiplication.presentation.view.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import ru.profitsw2000.core.utils.OnMathCategoryClickListener
-import ru.profitsw2000.data.model.MathCategoryModel
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import ru.profitsw2000.multiplication.R
 import ru.profitsw2000.multiplication.databinding.HistoryListItemViewBinding
@@ -57,6 +55,8 @@ class MultiplicationHistoryAdapter(
             testDate.text = SimpleDateFormat("dd.MM.yyyy HH:mm").format(data[position].testDate)
             testId.text = context.getString(R.string.test_id_number_text,
                 data[position].id.toString())
+            if (data[position].isHighDifficulty) isHighDifficultySign.visibility = View.VISIBLE
+            else isHighDifficultySign.visibility = View.GONE
 
             //Colors
             testAssessment.setTextColor(ContextCompat.getColor(context,
@@ -96,5 +96,6 @@ class MultiplicationHistoryAdapter(
         val testDuration = binding.totalTestTimeTextView
         val testDate = binding.testDateTextView
         val testId = binding.testIdTextView
+        val isHighDifficultySign = binding.highDifficultyImageView
     }
 }

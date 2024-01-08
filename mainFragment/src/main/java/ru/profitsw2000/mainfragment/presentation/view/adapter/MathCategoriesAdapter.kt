@@ -1,11 +1,10 @@
 package ru.profitsw2000.mainfragment.presentation.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import diarynote.mainfragment.databinding.MathCategoryItemViewBinding
-import ru.profitsw2000.core.utils.OnMathCategoryClickListener
+import ru.profitsw2000.core.utils.domain.OnMathCategoryClickListener
 import ru.profitsw2000.data.model.MathCategoryModel
 
 class MathCategoriesAdapter(

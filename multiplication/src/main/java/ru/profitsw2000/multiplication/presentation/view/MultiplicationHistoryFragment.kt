@@ -1,12 +1,10 @@
 package ru.profitsw2000.multiplication.presentation.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,11 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.profitsw2000.core.utils.OnMathCategoryClickListener
 import ru.profitsw2000.data.model.MultiplicationHistoryModel
 import ru.profitsw2000.data.model.state.MultiplicationHistoryState
 import ru.profitsw2000.multiplication.R
-import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationBinding
 import ru.profitsw2000.multiplication.databinding.FragmentMultiplicationHistoryBinding
 import ru.profitsw2000.multiplication.presentation.utils.MultiplicationHistoryDiffUtilCallback
 import ru.profitsw2000.multiplication.presentation.utils.OnHistoryListEventsListener

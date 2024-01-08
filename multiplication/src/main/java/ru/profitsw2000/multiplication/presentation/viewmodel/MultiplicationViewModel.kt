@@ -265,6 +265,7 @@ class MultiplicationViewModel (
                        userMultiplicationResults = arrayListOf(),
                        tasksTime = arrayListOf(),
                        tasksNumber = sharedPreferences.getInt(MULTIPLICATION_TASKS_NUMBER_KEY, 10),
+                       isHighDifficulty = false,
                        testWasInterrupted
                    )
                )
